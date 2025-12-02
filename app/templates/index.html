@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+  S.T.A.R.D.R.O.P // Stardrop
+  Roster: Alvin Sze, Kiran Soemardjo, James Sun, Jalen Chen
+  SoftDev
+ -->
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="../static/app.css">
+  </head>
+
+<!--
+**Flash Block Message Pop-up
+  {% block content %}
+  <div class="flashmsg">
+      {% for message in get_flashed_messages() %}
+      {{ message }}<br>
+      {% endfor %}
+      {% block page_content %}{% endblock %}
+  </div>
+  {% endblock %}
+-->
+
+  <div class="header">
+    <h1>
+      Title Placeholder
+    </h1>
+
+<!--
+**Display when logged in
+    {% if logged_in %}
+
+    <p>Hello <strong>{{ current_user }}</strong></p>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <p><a href="{{url_for('account_settings')}}">Account Settings</a></p>
+
+    <a href="{{ url_for('profile', username = current_user) }}">Your Blog Page</a>
+    <hr>
+-->
+
+<!--
+** Display when not logged in
+    {% else %}
+
+    <p><a href="{{ url_for('login') }}">Log in / Register</a></p>
+    <hr>
+-->
+
+
+<!--
+**End display
+    {% endif %}
+
+    <div class = "search">
+      <p>Search for posts containing keyword:</p>
+      <form action="{{ url_for('search_results') }}" method="get">
+        <input type="text" name="keyword" placeholder="Keyword">
+        <p><p>
+        <button type="submit" title="Search">Search</button>
+      </form>
+    </div>
+-->
+
+<!--
+**Display
+    <h2>Display Placeholder</h2>
+    {% if latest_posts %}
+        {% for post in latest_posts %}
+            <div class="post">
+                <h3><a href="{{ url_for('viewedit_post', post_id=post['id']) }}">{{ post['title'] }}</a></h3>
+                <p><em>By {{ posters[loop.index0] }} | {{ post['timestamp'] }}</em></p>
+                <p>{{ post['body'][:200]|safe  }}{% if post['body']|length > 200 %}...{% endif %}</p>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>=EMPTY.</p>
+    {% endif %}
+
+
+    <p><a href="{{url_for('user_guide')}}">User Guide</a></p>
+
+-->
+
+  </div>
+
+</html>

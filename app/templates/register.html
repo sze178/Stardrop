@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+  S.T.A.R.D.R.O.P // Stardrop
+  Roster: Alvin Sze, Kiran Soemardjo, James Sun, Jalen Chen
+  SoftDev
+ -->
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="../static/app.css">
+  </head>
+
+  <body>
+<!--
+**Flash Block Message Pop-up
+    {% block content %}
+    <div class="flashmsg">
+        {% for message in get_flashed_messages() %}
+        {{ message }}<br>
+        {% endfor %}
+        {% block page_content %}{% endblock %}
+    </div>
+    {% endblock %}
+-->
+
+    <div class="header">
+      <h1>
+        ACCOUNT CREATION PAGE REGISTERRRRR poop
+      </h1>
+    </div>
+
+<!--
+**Logged in display
+    <div class = "middle">
+      {% if logged_in %}
+        <p>Welcome, <strong>{{ current_user }}</strong>!</p>
+        <p>Registering for another account?</p>
+      {% else %}
+        <h3> Welcome, New User! </h3>
+      {% endif %}
+      <hr>
+      <p>
+        To register a new account, please input a <strong> username</strong> and <i>strong</i> <strong>password</strong> combination below! <br>
+      </p>
+
+
+**Account Login
+      <div class = "credentials">
+        <form action="{{ url_for('register') }}" method="post">
+          <p><strong>Username<strong></p>
+          <input type="text" name="username" placeholder="Username" title="CASE SENSITIVE!">
+          <br>
+          <p><strong>Password<strong></p>
+          <input type="password" name="password" placeholder="Password" title="CASE SENSITIVE!">
+          <p></p>
+          <button type="submit" title="Register?">Register</button>
+        </form>
+      </div>
+
+
+    </div>
+-->
+
+<!--
+**Redirect to login/Return to Homepage
+    <br>
+    <hr>
+    <div class = "footer">
+      <p>
+        <br> Already have an account? <a href= "/login"> Login</a> to an existing account.
+      </p>
+      <p>
+        Return to <a href= "/"> homepage</a><br>
+      </p>
+    </div>
+-->
+
+
+  </body>
+
+</html>

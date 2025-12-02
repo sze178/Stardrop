@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+  S.T.A.R.D.R.O.P // Stardrop
+  Roster: Alvin Sze, Kiran Soemardjo, James Sun, Jalen Chen
+  SoftDev
+ -->
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="../static/app.css">
+  </head>
+
+  <body>
+<!--
+**Flash Block Message Pop-up
+    {% block content %}
+    <div class="flashmsg">
+        {% for message in get_flashed_messages() %}
+        {{ message }}<br>
+        {% endfor %}
+        {% block page_content %}{% endblock %}
+    </div>
+    {% endblock %}
+-->
+
+    <div class="header">
+      <h1>
+        LOGIN PAGE LOGINLOGINLOGINLOGINLOGINLOGIN
+      </h1>
+    </div>
+
+<!--
+**Logged in Display
+    <div class = "middle">
+      {% if logged_in %}
+        <p>Welcome, <strong>{{ current_user }}</strong>!</p>
+
+      {% else %}
+      <h3> Welcome, User! </h3>
+      <hr>
+
+      <div class = "credentials">
+         <form action="/login", method="POST">
+           <p><strong>Username<strong></p>
+           <input type="text" name="username" placeholder="Username" title="CASE SENSITIVE!">
+           <br>
+           <p><strong>Password<strong></p>
+           <input type="password" name="password" placeholder="Password" title="CASE SENSITIVE!">
+           <p></p>
+           <button type="submit" title="Log in?">Login</button>
+         </form>
+       </div>
+     </div>
+-->
+
+<!--
+**Redirect to Register/Return to homepage
+     <br>
+     <hr>
+     <div class = "footer">
+       <p>
+         <br> Need an account?<a href= "/register"> Register</a> for an new account!<br>
+       </p>
+      </div>
+      {% endif %}
+      <p>
+        Return to <a href= "/"> homepage</a><br>
+      </p>
+-->
+
+
+  </body>
+
+</html>
