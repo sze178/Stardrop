@@ -1,0 +1,4 @@
+alvinS -- 2025-12-01 22:53
+- init devlog
+- added design.pdf v0
+- added art drafts for HTML testing
