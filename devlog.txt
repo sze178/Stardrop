@@ -7,6 +7,9 @@ jamesS -- 2025-12-02 10:56
 - Added HTML pages for index, register, and login
 - Added structure code in HTML for flask connection in commented sections (will work once flask app is vrooming)
 
-kiranS -- 2025-12-02 21:00
+INITIAL DD REVIEW -- 2025-12-02 21:00
 - Edited design document to include new ingredients table
+- Altered component and site maps for greater specificity
+
+kiranS -- 2025-12-02 21:20
 - Added cards for Gold and ISS APIs
