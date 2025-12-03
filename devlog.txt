@@ -13,3 +13,6 @@ INITIAL DD REVIEW -- 2025-12-02 21:00
 
 kiranS -- 2025-12-02 21:20
 - Added cards for Gold and ISS APIs
+
+kiranS -- 2025-12-3 10:35
+- Finish DB initialization and general methods
