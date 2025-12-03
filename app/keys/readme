@@ -1,0 +1,4 @@
+APIs used:
+1. BoozeAPI: Returns drink information which will change the price of the drink and image displayed using the returned ingredients list.
+2. WhereTheISSAtAPI: Returns the city that the bar is above at the time the player time traveled to (essentially replacing the ISS with the bar for simplicity).
+3. GoldAPI: Returns how much gold a drink is worth at the time the player time traveled to. Rounding to the nearest ounce, each NPC will pay in one ounce gold coins, which is tracked by amount earned.
