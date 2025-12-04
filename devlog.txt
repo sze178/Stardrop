@@ -22,3 +22,6 @@ jamesS -- 2025-12-3 10:38
 
 kiranS -- 2025-12-03 4:30
 - Fixed heading format of used API cards
+
+jalenC -- 2025-12-4 10:35
+- updated readme with installation guide and markdown
