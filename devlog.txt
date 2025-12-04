@@ -18,7 +18,7 @@ kiranS -- 2025-12-3 10:35
 - Finished DB initialization and general methods
 
 jamesS -- 2025-12-3 10:38
-- Updated component map, added keys folder for APIs, updated readme heading
+- Updated component map, added keys folder for APIs, updated readme heading, description
 
 kiranS -- 2025-12-03 4:30
 - Fixed heading format of used API cards
