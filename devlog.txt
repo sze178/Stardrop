@@ -32,3 +32,7 @@ jamesS -- 2025-12-4 10:37
 kiranS -- 2025-12-04 11:00
 - Started on flask app and login methods
 
+alvinS -- 2025-12-04 11:01
+- Editted index.html to have background
+- Added placeholder navbar with Foundation
+- Made CSS static file with CDN and Google Fonts connected
