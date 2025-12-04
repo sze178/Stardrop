@@ -22,3 +22,9 @@ $ pip install -r requirements.txt
 
 
 Launch Codes:
+
+0. Activate your Python virtual environment
+1. Run:
+'''
+$ python __init__.py
+'''

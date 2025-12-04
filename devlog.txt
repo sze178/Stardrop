@@ -25,3 +25,6 @@ kiranS -- 2025-12-03 4:30
 
 jalenC -- 2025-12-4 10:35
 - updated readme with installation guide and markdown
+
+jamesS -- 2025-12-4 10:37
+- added requirement.txt, added launch codes to readme
