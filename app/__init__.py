@@ -7,8 +7,7 @@ db = sqlite3.connect(DB_FILE)
 c = db.cursor()
 
 c.executescript("""
-DROP TABLE IF EXISTS players;
-CREATE TABLE players (
+CREATE TABLE IF NOT EXISTS players (
     username TEXT PK,
     name TEXT,
     password TEXT,
@@ -22,10 +21,30 @@ CREATE TABLE players (
 """)
 
 c.executescript("""
-DROP TABLE IF EXISTS ingredients;
-CREATE TABLE ingredients (
+CREATE TABLE IF NOT EXISTS ingredients (
     name TEXT PK,
     color TEXT,
     price REAL
 );
 """)
+
+app = Flask(__name__)
+
+@app.get("/")
+def index_get():
+    return render_template('index.html')
+
+@app.get("/login")
+def login_get():
+    return render_template('login.html')
+
+def login_post():
+    username = request.form.get("username")
+    password = request.form.get("password")
+    registered = select_query("SELECT * IN players WHERE username=?", [username])
+    if len(registered) = 0 or registered[1] != "password":
+        flash("Invalid credentials")
+        return redirect(url_for(login_get()))
+    else:
+        session["username"] = username
+        return redirect(url_for(index_get())) 

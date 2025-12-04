@@ -28,3 +28,7 @@ jalenC -- 2025-12-4 10:35
 
 jamesS -- 2025-12-4 10:37
 - added requirement.txt, added launch codes to readme
+
+kiranS -- 2025-12-04 11:00
+- Started on flask app and login methods
+
