@@ -3,14 +3,19 @@
   S.T.A.R.D.R.O.P // Stardrop
   Roster: Alvin Sze, Kiran Soemardjo, James Sun, Jalen Chen
   SoftDev
- -->
-<html>
+-->
+<html style = "background-image: url(../../art/background.gif); image-rendering: pixelated;">
 
   <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../static/app.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
   </head>
 
-  <body>
 <!--
 **Flash Block Message Pop-up
     {% block content %}
@@ -22,12 +27,22 @@
     </div>
     {% endblock %}
 -->
-
-    <div class="header">
-      <h1>
-        ACCOUNT CREATION PAGE REGISTERRRRR poop
-      </h1>
+<div>
+  <nav class="top-bar topbar-responsive">
+    <div class="top-bar-title">
+      <a class="topbar-responsive-logo megrim-regular" href="#"><strong>S.T.A.R.D.R.O.P</strong></a>
     </div>
+    <div id="topbar-responsive" class="topbar-responsive-links">
+      <div class="top-bar-right">
+        <ul class="menu simple vertical medium-horizontal">
+          <li>
+            <button type="button" class="button hollow topbar-responsive-button">Home </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
 
 <!--
 **Logged in display
@@ -74,8 +89,5 @@
       </p>
     </div>
 -->
-
-
-  </body>
 
 </html>
