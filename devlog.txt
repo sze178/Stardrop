@@ -39,3 +39,7 @@ alvinS -- 2025-12-04 11:01
 
 jalenC -- 2025-12-05 10:43
 - updated readme markdown and launch codes
+
+alvinS -- 2025-12-05 11:03
+- Added game_scene.html
+- Added background for game_scene.html and started layering game images
