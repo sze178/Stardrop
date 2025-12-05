@@ -2,7 +2,7 @@
 
 Roster: Alvin Sze, Kiran Soemardjo, James Sun, Jalen Chen
 
-Project Description:
+### Project Description:<br>
 Our project aims to simulate a bartending experience using the BoozeAPI to acquire drink recipes (which has a non-alcoholic query filter so we can make a toggle for alcohol) and after customers order, the returned drink information will allow the player to click the appropriate ingredients and drink glass. We thought of a short backstory that places the bar in space, and we will use the WhereTheISSAtAPI to tell the player what city the bar is currently above. Since the bar is in space, we decided customers will pay in gold, which will be converted to USD using the GoldAPI, where we can also use the given historical data to match it with the ISS location at different times (allowing us to perhaps add a time travel function).
 
 ## Install Guide:
@@ -21,10 +21,9 @@ $ pip install -r requirements.txt
 ```
 
 
-Launch Codes:
-
+## Launch Codes:
 0. Activate your Python virtual environment
-1. Run:
+1. From the Stardrop directory, run:
 ```
-$ python __init__.py
+$ python app/__init__.py
 ```
