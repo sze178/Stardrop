@@ -1,15 +1,19 @@
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 import sqlite3
 
+
 DB_FILE = "data.db"
+
 
 db = sqlite3.connect(DB_FILE)
 c = db.cursor()
+
 
 c.executescript("""
 CREATE TABLE IF NOT EXISTS players (
     username TEXT PK,
     name TEXT,
+    
     password TEXT,
     money_earned REAL,
     npc_1_interact INTEGER DEFAULT 0,
@@ -20,6 +24,7 @@ CREATE TABLE IF NOT EXISTS players (
 );
 """)
 
+
 c.executescript("""
 CREATE TABLE IF NOT EXISTS ingredients (
     name TEXT PK,
@@ -28,23 +33,51 @@ CREATE TABLE IF NOT EXISTS ingredients (
 );
 """)
 
+
 app = Flask(__name__)
+
 
 @app.get("/")
 def index_get():
     return render_template('index.html')
 
+
 @app.get("/login")
 def login_get():
     return render_template('login.html')
 
+
+@app.post("/login")
 def login_post():
     username = request.form.get("username")
     password = request.form.get("password")
     registered = select_query("SELECT * IN players WHERE username=?", [username])
-    if len(registered) = 0 or registered[1] != "password":
+    if len(registered) == 0 or registered[1] != "password":
         flash("Invalid credentials")
         return redirect(url_for(login_get()))
-    else:
-        session["username"] = username
-        return redirect(url_for(index_get())) 
+    session["username"] = username
+    return redirect(url_for(index_get())) 
+
+
+@app.get("/register")
+def register_get():
+    return render_template("register.html")
+
+
+@app.post("/register")
+def register_post():
+    username = request.form.get("username")
+    password = request.form.get("password")
+    registered = select_query("SELECT * IN PLAYERS WHERE username=?", [username])
+    if len(registered) != 0:
+        flash("Username already exists")
+        return redirect(url_for(register_get()))
+    insert_query(players, {"username": username, "password": password})
+    flash("Account successfully registered")
+    return redirect(url_for(login_get()))
+
+
+if __name__ == "__main__":
+    app.debug = True
+    app.run()
+
