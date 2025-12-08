@@ -61,3 +61,7 @@ kiranS -- 2025-12-08 10:56
 
 jalenC -- 2025-12-08 11:02
 - added GoldAPI key
+
+kiranS -- 2025-12-08 6:05
+- Added functionality to remaining buttons
+- Fixes to authentication code
