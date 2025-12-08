@@ -7,7 +7,6 @@
 
 
    <head>
-     <html style = "background-image: url(../../art/background.gif); image-rendering: pixelated;">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
      <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
      <link rel="stylesheet" type="text/css" href="../static/app.css">
@@ -37,48 +36,37 @@
      </div>
    </head>
 
-<!--
-    {% block content %}
-    <div class="flashmsg">
-        {% for message in get_flashed_messages() %}
-        {{ message }}<br>
-        {% endfor %}
-        {% block page_content %}{% endblock %}
-    </div>
-    {% endblock %}
-  -->
+    <body style="background-color: rgba(255, 255, 255, 0); color:white;">
+      <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
+      <div style="align:center; margin:20px; text-align:center;">
+        <div class = "body">
+          <h3> Welcome, User! </h3>
+          <hr>
 
+          <div class = "credentials" style="align:center; margin-left: 20%; margin-right: 20%;">
+            <form action="/login", method="POST">
+             <p><strong>Username<strong></p>
+             <input type="text" name="username" placeholder="Username" title="CASE SENSITIVE!">
+             <br>
+             <p><strong>Password<strong></p>
+             <input type="password" name="password" placeholder="Password" title="CASE SENSITIVE!">
+             <p></p>
+             <button type="submit" title="Log in?" style="color:white">Login</button>
+           </form>
+          </div>
+        </div>
 
-  <body style="background-color: rgba(255, 255, 255, 0); color:white;">
-    <div style="align:center; margin:20px; text-align:center;">
-      <div class = "body">
-        <h3> Welcome, User! </h3>
+        <br>
         <hr>
-
-        <div class = "credentials" style="align:center; margin-left: 20%; margin-right: 20%;">
-          <form action="/login", method="POST">
-           <p><strong>Username<strong></p>
-           <input type="text" name="username" placeholder="Username" title="CASE SENSITIVE!">
-           <br>
-           <p><strong>Password<strong></p>
-           <input type="password" name="password" placeholder="Password" title="CASE SENSITIVE!">
-           <p></p>
-           <button type="submit" title="Log in?" style="color:white">Login</button>
-         </form>
-        </div>
+          <div class = "footer">
+            <p>
+              <br> Need an account?<a href= "/register"> Register</a> for an new account!<br>
+            </p>
+          </div>
+        <p>
+          Return to <a href= "/"> homepage</a><br>
+        </p>
       </div>
-
-      <br>
-      <hr>
-        <div class = "footer">
-          <p>
-            <br> Need an account?<a href= "/register"> Register</a> for an new account!<br>
-          </p>
-        </div>
-      <p>
-        Return to <a href= "/"> homepage</a><br>
-      </p>
-      </div
-  </body>
+    </body>
 
 </html>

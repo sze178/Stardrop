@@ -4,8 +4,6 @@
   Roster: Alvin Sze, Kiran Soemardjo, James Sun, Jalen Chen
   SoftDev
 -->
-<html style = "background-image: url(../../art/background.gif); image-rendering: pixelated;">
-
   <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
@@ -14,80 +12,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+    <div>
+      <nav class="top-bar topbar-responsive">
+        <div class="top-bar-title">
+          <a class="topbar-responsive-logo megrim-regular" href="#"><strong>S.T.A.R.D.R.O.P</strong></a>
+        </div>
+        <div id="topbar-responsive" class="topbar-responsive-links">
+          <div class="top-bar-right">
+            <ul class="menu simple vertical medium-horizontal">
+              <li>
+                <button type="button" class="button hollow topbar-responsive-button">Home </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
   </head>
 
-<!--
-**Flash Block Message Pop-up
-    {% block content %}
-    <div class="flashmsg">
-        {% for message in get_flashed_messages() %}
-        {{ message }}<br>
-        {% endfor %}
-        {% block page_content %}{% endblock %}
-    </div>
-    {% endblock %}
--->
-<div>
-  <nav class="top-bar topbar-responsive">
-    <div class="top-bar-title">
-      <a class="topbar-responsive-logo megrim-regular" href="#"><strong>S.T.A.R.D.R.O.P</strong></a>
-    </div>
-    <div id="topbar-responsive" class="topbar-responsive-links">
-      <div class="top-bar-right">
-        <ul class="menu simple vertical medium-horizontal">
-          <li>
-            <button type="button" class="button hollow topbar-responsive-button">Home </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div>
+<body>
+  <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
+</body>
 
-<!--
-**Logged in display
-    <div class = "middle">
-      {% if logged_in %}
-        <p>Welcome, <strong>{{ current_user }}</strong>!</p>
-        <p>Registering for another account?</p>
-      {% else %}
-        <h3> Welcome, New User! </h3>
-      {% endif %}
-      <hr>
-      <p>
-        To register a new account, please input a <strong> username</strong> and <i>strong</i> <strong>password</strong> combination below! <br>
-      </p>
-
-
-**Account Login
-      <div class = "credentials">
-        <form action="{{ url_for('register') }}" method="post">
-          <p><strong>Username<strong></p>
-          <input type="text" name="username" placeholder="Username" title="CASE SENSITIVE!">
-          <br>
-          <p><strong>Password<strong></p>
-          <input type="password" name="password" placeholder="Password" title="CASE SENSITIVE!">
-          <p></p>
-          <button type="submit" title="Register?">Register</button>
-        </form>
-      </div>
-
-
-    </div>
--->
-
-<!--
-**Redirect to login/Return to Homepage
-    <br>
-    <hr>
-    <div class = "footer">
-      <p>
-        <br> Already have an account? <a href= "/login"> Login</a> to an existing account.
-      </p>
-      <p>
-        Return to <a href= "/"> homepage</a><br>
-      </p>
-    </div>
--->
 
 </html>
