@@ -52,3 +52,9 @@ alvinS -- 2025-12-07 18:57
 - Fixed layering images on game_scene
 - Background wall/window stretches to fit window
 - Potential issue: windows that are too small leads to loss of aspect ratio
+
+jamesS -- 2025-12-08 10:50
+- Changed html formatting and removed comments
+
+kiranS -- 2025-12-08 10:56
+- Linked homepage buttons to actual pages
