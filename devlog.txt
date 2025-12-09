@@ -69,3 +69,7 @@ kiranS -- 2025-12-08 6:05
 jamesS -- 2025-12-09 10:43
 - Added register form for register.HTML
 - Refined login and register form formatting, submission button style
+
+alvinS -- 2025-12-09 10:58
+- Finally figured out image layering with 2+ images
+

@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
   </head>
-  <body style = "background-color: black; height: 100%; text-align: center">
+  <body style = "background-color: black; height: 100%; text-align: center;">
     <nav class="top-bar topbar-responsive">
       <div class="top-bar-title">
         <a class="topbar-responsive-logo megrim-regular" href="#"><strong>S.T.A.R.D.R.O.P</strong></a>
@@ -24,17 +24,16 @@
         <div class="top-bar-right">
           <ul class="menu simple vertical medium-horizontal">
             <li>
-              <button type="button" class="button hollow topbar-responsive-button">Log In</button>
-            </li>
-            <li>
-              <button type="button" class="button hollow topbar-responsive-button">Create Account </button>
+              <button type="button" class="button hollow topbar-responsive-button">Home</button>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <div style="display: inline-block; height: 100%; background-image: url(../../art/background.gif); image-rendering: pixelated;">
-      <img src="../../art/wall.png" style="image-rendering:pixelated; width: auto; height: 90vh">
+    <div style="display: inline-block; height: 100%; background-image: url(../static/art/background.gif); image-rendering: pixelated;">
+      <img src="../static/art/wall.png" style="position: absolute; z-index: 1; image-rendering:pixelated; width: 90vw; height: auto">
+      <img src="../static/art/bar.png" style="position: absolute; z-index: 2; image-rendering:pixelated; width: 90vw; height:auto;">
+      <img src="../static/art/barstools.png" style="position: relative; z-index: 3; image-rendering:pixelated; width: 90vw; height:auto;">
     </div>
   </body>
 </html>
