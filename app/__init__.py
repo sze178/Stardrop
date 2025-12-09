@@ -51,12 +51,14 @@ def login_get():
 def login_post():
     username = request.form.get("username")
     password = request.form.get("password")
+    ## print(select_query("SELECT * FROM players WHERE username=?", [username]))
     registered = select_query("SELECT * FROM players WHERE username=?", [username])
-    if len(registered) == 0 or registered[1] != "password":
+    if len(registered) == 0 or registered[0]["password"] != password:
         flash("Invalid credentials", "error")
+        ## print("XXXXXXX")
         return redirect(url_for("login_get"))
     session["username"] = username
-    return redirect(url_for(index_get())) 
+    return redirect(url_for("index_get")) 
 
 
 @app.get("/register")
@@ -71,10 +73,10 @@ def register_post():
     registered = select_query("SELECT * FROM PLAYERS WHERE username=?", [username])
     if len(registered) != 0:
         flash("Username already exists", "error")
-        return redirect(url_for(register_get()))
-    print(insert_query(players, {"username": username, "password": password}))
+        return redirect(url_for("register_get"))
+    print(insert_query("players", {"username": username, "password": password}))
     flash("Account successfully registered", "success")
-    return redirect(url_for(login_get()))
+    return redirect(url_for("login_get"))
 
 
 if __name__ == "__main__":

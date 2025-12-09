@@ -51,6 +51,16 @@
   </head>
 
   <body style="background-color: rgba(255, 255, 255, 0); color:white;">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    
     <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
      <div style="align:center; margin:20px; text-align:center;">
        <div class = "body">
@@ -58,14 +68,14 @@
          <hr>
 
          <div class = "credentials" style="align:center; margin-left: 20%; margin-right: 20%;">
-           <form action="/login", method="POST">
+           <form action="/register", method="POST">
             <p><strong>New username<strong></p>
             <input type="text" name="username" placeholder="Username" title="CASE SENSITIVE!">
             <br>
             <p><strong>Password<strong></p>
             <input type="password" name="password" placeholder="Password" title="CASE SENSITIVE!">
             <p></p>
-            <button class="button button1" type="submit" title="Log in?">Register Account</button>
+            <button class="button button1" type="submit" title="Register?">Register Account</button>
           </form>
          </div>
        </div>
@@ -73,11 +83,11 @@
        <hr>
          <div class = "footer">
            <p>
-             <br> Already have an account?<a href= "/register"> Login</a> to your account!<br>
+             <br> Already have an account?<a href= "{{ url_for('login_get')}}"> Login</a> to your account!<br>
            </p>
          </div>
        <p>
-         Return to <a href= "/"> homepage</a><br>
+         Return to <a href= "{{ url_for('index_get')}}"> homepage</a><br>
        </p>
      </div>
    </body>

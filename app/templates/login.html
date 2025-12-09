@@ -53,7 +53,17 @@
    </head>
 
    <body style="background-color: rgba(255, 255, 255, 0); color:white;">
-     <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
       <div style="align:center; margin:20px; text-align:center;">
         <div class = "body">
           <h3> Welcome, User! </h3>
@@ -75,11 +85,11 @@
         <hr>
           <div class = "footer">
             <p>
-              <br> Need an account?<a href= "/register"> Register</a> for an new account!<br>
+              <br> Need an account?<a href= "{{ url_for('register_get') }}"> Register</a> for an new account!<br>
             </p>
           </div>
         <p>
-          Return to <a href= "/"> homepage</a><br>
+          Return to <a href= "{{ url_for('index_get') }}"> homepage</a><br>
         </p>
       </div>
     </body>

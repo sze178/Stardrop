@@ -76,3 +76,7 @@ alvinS -- 2025-12-09 10:58
 kiranS -- 2025-12-09 11:00
 - Start on db fixes and start flash
 
+kiranS -- 2025-12-09 5:30
+- Got auth + db insertion completely working
+- Added code for flashes to html (not formatted)
+- fixed bottom of the page link formatting
