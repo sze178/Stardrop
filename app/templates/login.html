@@ -15,6 +15,22 @@
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
 
+     <style>
+     .button{
+       color: black;
+       background: white;
+       padding: 10px 12px;
+       border-radius: 8px;
+       border: grey
+     }
+
+     .button1:hover{
+       background-color: grey;
+       background: white
+       color:white;
+     }
+     </style>
+
      <div>
        <nav class="top-bar topbar-responsive">
          <div class="top-bar-title">
@@ -36,8 +52,8 @@
      </div>
    </head>
 
-    <body style="background-color: rgba(255, 255, 255, 0); color:white;">
-      <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
+   <body style="background-color: rgba(255, 255, 255, 0); color:white;">
+     <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
       <div style="align:center; margin:20px; text-align:center;">
         <div class = "body">
           <h3> Welcome, User! </h3>
@@ -51,12 +67,11 @@
              <p><strong>Password<strong></p>
              <input type="password" name="password" placeholder="Password" title="CASE SENSITIVE!">
              <p></p>
-             <button type="submit" title="Log in?" style="color:white">Login</button>
+             <button class="button button1" type="submit" title="Log in?">Login</button>
            </form>
           </div>
         </div>
 
-        <br>
         <hr>
           <div class = "footer">
             <p>

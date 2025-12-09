@@ -12,6 +12,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+
+    <style>
+    .button{
+      color: black;
+      background: white;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: grey
+    }
+
+    .button1:hover{
+      background-color: grey;
+      background: white
+      color:white;
+    }
+    </style>
+
     <div>
       <nav class="top-bar topbar-responsive">
         <div class="top-bar-title">
@@ -23,6 +40,9 @@
               <li>
                 <a href="{{url_for('index_get')}}"><button type="button" class="button hollow topbar-responsive-button">Home</button></a>
               </li>
+              <li>
+                <a href="{{url_for('login_get')}}"><button type="button" class="button hollow topbar-responsive-button">Login</button></a>
+              </li>
             </ul>
           </div>
         </div>
@@ -30,9 +50,37 @@
     </div>
   </head>
 
-<body>
-  <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
-</body>
+  <body style="background-color: rgba(255, 255, 255, 0); color:white;">
+    <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
+     <div style="align:center; margin:20px; text-align:center;">
+       <div class = "body">
+         <h3> Create new account </h3>
+         <hr>
+
+         <div class = "credentials" style="align:center; margin-left: 20%; margin-right: 20%;">
+           <form action="/login", method="POST">
+            <p><strong>New username<strong></p>
+            <input type="text" name="username" placeholder="Username" title="CASE SENSITIVE!">
+            <br>
+            <p><strong>Password<strong></p>
+            <input type="password" name="password" placeholder="Password" title="CASE SENSITIVE!">
+            <p></p>
+            <button class="button button1" type="submit" title="Log in?">Register Account</button>
+          </form>
+         </div>
+       </div>
+
+       <hr>
+         <div class = "footer">
+           <p>
+             <br> Already have an account?<a href= "/register"> Login</a> to your account!<br>
+           </p>
+         </div>
+       <p>
+         Return to <a href= "/"> homepage</a><br>
+       </p>
+     </div>
+   </body>
 
 
 </html>

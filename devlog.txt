@@ -45,7 +45,7 @@ alvinS -- 2025-12-05 11:03
 - Added background for game_scene.html and started layering game images
 
 kiranS -- 2025-12-05 11:05
-- Finished basic flask functionality 
+- Finished basic flask functionality
 - Added methods for authentication
 
 alvinS -- 2025-12-07 18:57
@@ -65,3 +65,7 @@ jalenC -- 2025-12-08 11:02
 kiranS -- 2025-12-08 6:05
 - Added functionality to remaining buttons
 - Fixes to authentication code
+
+jamesS -- 2025-12-09 10:43
+- Added register form for register.HTML
+- Refined login and register form formatting, submission button style
