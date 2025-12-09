@@ -72,7 +72,7 @@ def register_post():
     if len(registered) != 0:
         flash("Username already exists", "error")
         return redirect(url_for(register_get()))
-    insert_query(players, {"username": username, "password": password})
+    print(insert_query(players, {"username": username, "password": password}))
     flash("Account successfully registered", "success")
     return redirect(url_for(login_get()))
 
