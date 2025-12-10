@@ -29,6 +29,7 @@
        background: white
        color:white;
      }
+
      </style>
 
      <div>
@@ -53,19 +54,24 @@
    </head>
 
    <body style="background-color: rgba(255, 255, 255, 0); color:white;">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        <ul class=flashes>
-        {% for category, message in messages %}
-          <li class="{{ category }}">{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+     <br>
+     {% with messages = get_flashed_messages(with_categories=true) %}
+       {% if messages %}
+         <ul class=flashes>
+         {% for category, message in messages %}
+           <div data-alert class="alert-box alert round" style="font-size:30px; text-align:center; border-style:solid; width:16%; border-radius:10px; background-color:;">
+             {{ message }}
+             <a href="login" class="close">&times;</a>
+           </div>
+         {% endfor %}
+         </ul>
+       {% endif %}
+     {% endwith %}
 
     <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
       <div style="align:center; margin:20px; text-align:center;">
         <div class = "body">
+
           <h3> Welcome, User! </h3>
           <hr>
 
