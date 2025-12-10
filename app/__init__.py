@@ -4,13 +4,7 @@ from db import select_query, insert_query, general_query
 
 GoldAPIKey = ""
 
-try:
-    keyfile = open("keys/key_GoldAPI.txt")
-    GoldAPIKey = next(keyfile)
-    print(GoldAPIKey)
-except FileNotFoundError:
-    print("NO GOLD API KEY FILE AVAILABLE")
-    flash("No GOLD API key file available", "error")
+
 
 DB_FILE = "data.db"
 
@@ -51,6 +45,13 @@ app.secret_key = "zxlkcvjlxzkjvlxcjlk"
 
 @app.get("/")
 def index_get():
+    try:
+        keyfile = open("keys/xkey_GoldAPI.txt")
+        GoldAPIKey = next(keyfile)
+        print(GoldAPIKey)
+    except FileNotFoundError:
+        print("NO GOLD API KEY FILE AVAILABLE")
+        flash("No GOLD API key file available", "error")
     return render_template('index.html')
 
 
