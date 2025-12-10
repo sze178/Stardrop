@@ -20,7 +20,7 @@ kiranS -- 2025-12-3 10:35
 jamesS -- 2025-12-3 10:38
 - Updated component map, added keys folder for APIs, updated readme heading, description
 
-kiranS -- 2025-12-03 4:30
+kiranS -- 2025-12-03 16:30
 - Fixed heading format of used API cards
 
 jalenC -- 2025-12-4 10:35
@@ -62,7 +62,7 @@ kiranS -- 2025-12-08 10:56
 jalenC -- 2025-12-08 11:02
 - added GoldAPI key
 
-kiranS -- 2025-12-08 6:05
+kiranS -- 2025-12-08 18:05
 - Added functionality to remaining buttons
 - Fixes to authentication code
 
@@ -76,7 +76,7 @@ alvinS -- 2025-12-09 10:58
 kiranS -- 2025-12-09 11:00
 - Start on db fixes and start flash
 
-kiranS -- 2025-12-09 5:30
+kiranS -- 2025-12-09 17:30
 - Got auth + db insertion completely working
 - Added code for flashes to html (not formatted)
 - fixed bottom of the page link formatting
@@ -100,3 +100,8 @@ kiranS -- 2025-12-10 11:00
 
 jamesS -- 2025-12-10 11:00
 - worked on flash appearance in login.html
+
+kiranS -- 2025-12-10 18:10
+- Created template html file that is extended by others
+- Added settings and log out buttons when already logged in (+ backend)
+- Moved home button to logo

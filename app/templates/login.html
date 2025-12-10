@@ -1,103 +1,42 @@
-<!DOCTYPE html>
 <!--
   S.T.A.R.D.R.O.P // Stardrop
   Roster: Alvin Sze, Kiran Soemardjo, James Sun, Jalen Chen
   SoftDev
  -->
 
+{% extends "template.html" %}
 
-   <head>
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
-     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
-     <link rel="stylesheet" type="text/css" href="../static/app.css">
+{% block content %}
 
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+<html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
+  <div style="align:center; margin:20px; text-align:center;">
+    <div class = "body">
 
-     <style>
-     .button{
-       color: black;
-       background: white;
-       padding: 10px 12px;
-       border-radius: 8px;
-       border: grey
-     }
+      <h3> Welcome, User! </h3>
+      <hr>
 
-     .button1:hover{
-       background-color: grey;
-       background: white
-       color:white;
-     }
+      <div class = "credentials" style="align:center; margin-left: 20%; margin-right: 20%;">
+        <form action="/login", method="POST">
+        <p><strong>Username<strong></p>
+        <input type="text" name="username" placeholder="Username" title="CASE SENSITIVE!">
+        <br>
+        <p><strong>Password<strong></p>
+        <input type="password" name="password" placeholder="Password" title="CASE SENSITIVE!">
+        <p></p>
+        <button class="button button1" type="submit" title="Log in?">Login</button>
+      </form>
+      </div>
+    </div>
 
-     </style>
-
-     <div>
-       <nav class="top-bar topbar-responsive">
-         <div class="top-bar-title">
-           <a class="topbar-responsive-logo megrim-regular" href="#"><strong>S.T.A.R.D.R.O.P</strong></a>
-         </div>
-         <div id="topbar-responsive" class="topbar-responsive-links">
-           <div class="top-bar-right">
-             <ul class="menu simple vertical medium-horizontal">
-               <li>
-                 <a href="{{url_for('index_get')}}"><button type="button" class="button hollow topbar-responsive-button">Home</button></a>
-               </li>
-               <li>
-                 <a href="{{url_for('register_get')}}"><button type="button" class="button hollow topbar-responsive-button">Register</button></a>
-               </li>
-             </ul>
-           </div>
-         </div>
-       </nav>
-     </div>
-   </head>
-
-   <body style="background-color: rgba(255, 255, 255, 0); color:white;">
-     <br>
-     {% with messages = get_flashed_messages(with_categories=true) %}
-       {% if messages %}
-         <ul class=flashes>
-         {% for category, message in messages %}
-           <div data-alert class="alert-box alert round" style="font-size:30px; text-align:center; border-style:solid; width:16%; border-radius:10px; background-color:;">
-             {{ message }}
-             <a href="login" class="close">&times;</a>
-           </div>
-         {% endfor %}
-         </ul>
-       {% endif %}
-     {% endwith %}
-
-    <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
-      <div style="align:center; margin:20px; text-align:center;">
-        <div class = "body">
-
-          <h3> Welcome, User! </h3>
-          <hr>
-
-          <div class = "credentials" style="align:center; margin-left: 20%; margin-right: 20%;">
-            <form action="/login", method="POST">
-             <p><strong>Username<strong></p>
-             <input type="text" name="username" placeholder="Username" title="CASE SENSITIVE!">
-             <br>
-             <p><strong>Password<strong></p>
-             <input type="password" name="password" placeholder="Password" title="CASE SENSITIVE!">
-             <p></p>
-             <button class="button button1" type="submit" title="Log in?">Login</button>
-           </form>
-          </div>
-        </div>
-
-        <hr>
-          <div class = "footer">
-            <p>
-              <br> Need an account?<a href= "{{ url_for('register_get') }}"> Register</a> for an new account!<br>
-            </p>
-          </div>
+    <hr>
+      <div class = "footer">
         <p>
-          Return to <a href= "{{ url_for('index_get') }}"> homepage</a><br>
+          <br> Need an account?<a href= "{{ url_for('register_get') }}"> Register</a> for an new account!<br>
         </p>
       </div>
-    </body>
+    <p>
+      Return to <a href= "{{ url_for('index_get') }}"> homepage</a><br>
+    </p>
+  </div>
 
-</html>
+{% endblock %}

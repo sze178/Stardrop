@@ -4,93 +4,39 @@
   Roster: Alvin Sze, Kiran Soemardjo, James Sun, Jalen Chen
   SoftDev
 -->
-  <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="../static/app.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+{% extends "template.html" %}
 
-    <style>
-    .button{
-      color: black;
-      background: white;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: grey
-    }
+{% block content %}
+  
+<html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
+  <div style="align:center; margin:20px; text-align:center;">
+    <div class = "body">
+      <h3> Create new account </h3>
+      <hr>
 
-    .button1:hover{
-      background-color: grey;
-      background: white
-      color:white;
-    }
-    </style>
-
-    <div>
-      <nav class="top-bar topbar-responsive">
-        <div class="top-bar-title">
-          <a class="topbar-responsive-logo megrim-regular" href="#"><strong>S.T.A.R.D.R.O.P</strong></a>
-        </div>
-        <div id="topbar-responsive" class="topbar-responsive-links">
-          <div class="top-bar-right">
-            <ul class="menu simple vertical medium-horizontal">
-              <li>
-                <a href="{{url_for('index_get')}}"><button type="button" class="button hollow topbar-responsive-button">Home</button></a>
-              </li>
-              <li>
-                <a href="{{url_for('login_get')}}"><button type="button" class="button hollow topbar-responsive-button">Login</button></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <div class = "credentials" style="align:center; margin-left: 20%; margin-right: 20%;">
+        <form action="/register", method="POST">
+        <p><strong>New username<strong></p>
+        <input type="text" name="username" placeholder="Username" required title="CASE SENSITIVE!">
+        <br>
+        <p><strong>Password<strong></p>
+        <input type="password" name="password" placeholder="Password" required title="CASE SENSITIVE!">
+        <p></p>
+        <button class="button button1" type="submit" title="Register?">Register Account</button>
+      </form>
+      </div>
     </div>
-  </head>
 
-  <body style="background-color: rgba(255, 255, 255, 0); color:white;">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        <ul class=flashes>
-          {% for category, message in messages %}
-            <li class="{{ category }}">{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-    
-    <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
-     <div style="align:center; margin:20px; text-align:center;">
-       <div class = "body">
-         <h3> Create new account </h3>
-         <hr>
+    <hr>
+      <div class = "footer">
+        <p>
+          <br> Already have an account?<a href= "{{ url_for('login_get')}}"> Login</a> to your account!<br>
+        </p>
+      </div>
+    <p>
+      Return to <a href= "{{ url_for('index_get')}}"> homepage</a><br>
+    </p>
+  </div>
 
-         <div class = "credentials" style="align:center; margin-left: 20%; margin-right: 20%;">
-           <form action="/register", method="POST">
-            <p><strong>New username<strong></p>
-            <input type="text" name="username" placeholder="Username" required title="CASE SENSITIVE!">
-            <br>
-            <p><strong>Password<strong></p>
-            <input type="password" name="password" placeholder="Password" required title="CASE SENSITIVE!">
-            <p></p>
-            <button class="button button1" type="submit" title="Register?">Register Account</button>
-          </form>
-         </div>
-       </div>
-
-       <hr>
-         <div class = "footer">
-           <p>
-             <br> Already have an account?<a href= "{{ url_for('login_get')}}"> Login</a> to your account!<br>
-           </p>
-         </div>
-       <p>
-         Return to <a href= "{{ url_for('index_get')}}"> homepage</a><br>
-       </p>
-     </div>
-   </body>
-
-
-</html>
+{% endblock %}

@@ -97,6 +97,10 @@ def logout_get():
     flash("You are now logged out.", "success")
     return redirect(url_for("index_get"))
 
+@app.get('/settings')
+def settings_get():
+    return render_template("settings.html")
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
