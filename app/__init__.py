@@ -7,8 +7,10 @@ GoldAPIKey = ""
 try:
     keyfile = open("keys/key_GoldAPI.txt")
     GoldAPIKey = next(keyfile)
+    print(GoldAPIKey)
 except FileNotFoundError:
     print("NO GOLD API KEY FILE AVAILABLE")
+    flash("No GOLD API key file available", "error")
 
 DB_FILE = "data.db"
 
@@ -41,6 +43,8 @@ CREATE TABLE IF NOT EXISTS ingredients (
 );
 """)
 
+db.commit()
+db.close()
 
 app = Flask(__name__)
 app.secret_key = "zxlkcvjlxzkjvlxcjlk"
@@ -83,7 +87,7 @@ def register_post():
         flash("Username already exists", "error")
         return redirect(url_for("register_get"))
     print(insert_query("players", {"username": username, "password": password}))
-    flash("Account successfully registered", "success")
+    flash("Account successfully registered. Please log in.", "success")
     return redirect(url_for("login_get"))
 
 
