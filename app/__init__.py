@@ -91,6 +91,11 @@ def register_post():
     flash("Account successfully registered. Please log in.", "success")
     return redirect(url_for("login_get"))
 
+@app.get('/logout')
+def logout_get():
+    session.pop('username', None)
+    flash("You are now logged out.", "success")
+    return redirect(url_for("index_get"))
 
 if __name__ == "__main__":
     app.debug = True

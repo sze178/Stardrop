@@ -93,3 +93,10 @@ alvinS -- 2025-12-09 23:26
 kiranS -- 2025-12-10 10:40
 - Added flash msg for api key error
 - Made username and password required fields for registration
+
+kiranS -- 2025-12-10 11:00
+- Added log out functionality in flask
+- Made navbar buttons conditional
+
+jamesS -- 2025-12-10 11:00
+- worked on flash appearance in login.html
