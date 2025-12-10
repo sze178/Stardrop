@@ -2,6 +2,14 @@ from flask import Flask, render_template, request, flash, redirect, session, url
 import sqlite3
 from db import select_query, insert_query, general_query
 
+GoldAPIKey = ""
+
+try:
+    keyfile = open("keys/key_GoldAPI.txt")
+    GoldAPIKey = next(keyfile)
+except FileNotFoundError:
+    print("NO GOLD API KEY FILE AVAILABLE")
+
 DB_FILE = "data.db"
 
 
