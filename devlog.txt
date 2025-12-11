@@ -109,3 +109,6 @@ kiranS -- 2025-12-10 18:10
 alvinS -- 2025-12-11 10:52
 - Hue-rotate animation for changing light colors
 - added placeholder image for bartender and start button
+
+jalenC -- 2025-12-11 10:57
+- created recipes.py and created a function to pull all ingredients from a given drink ID
