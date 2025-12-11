@@ -69,9 +69,11 @@
             {% if messages %}
                 <ul class=flashes>
                     {% for category, message in messages %}
-                    <div data-alert class="alert-box alert round" style="font-size:30px; text-align:center; border-style:solid; width:16%; border-radius:10px; background-color: red;">
-                        {{ message }}
-                        <a href="login" class="close">&times;</a>
+                    <div data-closable class="alert-box callout alert">
+                      <i class="fa fa-ban"></i> {{ message }}
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                        <span aria-hidden="true">&CircleTimes;</span>
+                      </button>
                     </div>
                     {% endfor %}
                 </ul>
