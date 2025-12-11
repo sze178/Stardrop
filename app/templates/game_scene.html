@@ -14,6 +14,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+
+    <style>
+      @keyframes wahookazooie {
+        0% {filter: hue-rotate(0deg);}
+        100% {filter: hue-rotate(360deg);}
+      }
+    </style>
+
   </head>
   <body style = "background-color: black; height: 100%; text-align: center;">
     <nav class="top-bar topbar-responsive">
@@ -31,9 +39,10 @@
       </div>
     </nav>
     <div style="display: inline-block; height: 100%; background-image: url(../static/art/background.gif); image-rendering: pixelated;">
-      <img src="../static/art/wall.png" style="position: absolute; z-index: 1; image-rendering:pixelated; width: 90vw; height: auto">
-      <img src="../static/art/bar.png" style="position: absolute; z-index: 2; image-rendering:pixelated; width: 90vw; height:auto;">
-      <img src="../static/art/barstools.png" style="position: relative; z-index: 3; image-rendering:pixelated; width: 90vw; height:auto;">
+      <img src="../static/art/wall.png" style="animation: wahookazooie 3s infinite; position: absolute; z-index: 1; image-rendering:pixelated; width: 90vw; height: auto">
+      <img src="../static/art/bartender.png" style="position: absolute; z-index: 2; image-rendering:pixelated; width: 90vw; height: auto">
+      <img src="../static/art/bar.png" style="animation: wahookazooie 3s infinite; position: absolute; z-index: 3; image-rendering:pixelated; width: 90vw; height:auto;">
+      <img src="../static/art/barstools.png" style="position: relative; z-index: 4; image-rendering:pixelated; width: 90vw; height:auto;">
     </div>
   </body>
 </html>
