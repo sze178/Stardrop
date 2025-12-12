@@ -101,6 +101,10 @@ def logout_get():
 def settings_get():
     return render_template("settings.html")
 
+@app.get('/game_scene')
+def game_scene_get():
+    return render_template("game_scene.html")
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
