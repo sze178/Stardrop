@@ -112,3 +112,6 @@ alvinS -- 2025-12-11 10:52
 
 jalenC -- 2025-12-11 10:57
 - created recipes.py and created a function to pull all ingredients from a given drink ID
+
+kiranS -- 2025-12-11 21:00
+- Added functionality to alert close buttons and made appearance pretty

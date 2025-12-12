@@ -141,7 +141,7 @@
   font-weight: bold;
 }
 
-.alert-box.alert {
+.alert-box.error {
   border: 3px solid #cc4b37;
   border-radius: 5px;
   background-color: rgba(204, 75, 55, 0.2);
@@ -163,13 +163,6 @@
   border: 3px solid #1779ba;
   border-radius: 5px;
   background-color: rgba(23, 121, 186, 0.2);
-}
-
-.alert-box i {
-  border: 2px solid #fefefe;
-  border-radius: 50%;
-  padding: .3em .325em;
-  margin-right: 0.5rem;
 }
 
 .alert-box .close-button {
