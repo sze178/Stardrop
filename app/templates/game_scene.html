@@ -4,21 +4,45 @@
   Roster: Alvin Sze, Kiran Soemardjo, James Sun, Jalen Chen
   SoftDev
  -->
+<html>
 
-{% extends "template.html" %}
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="../static/app.css">
 
-{% block style %}
-@keyframes wahookazooie {
-    0% {filter: hue-rotate(0deg);}
-    100% {filter: hue-rotate(360deg);}
-}
-{% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
 
-{% block content %}
-<div style="display: inline-block; height: 100%; background-image: url(../static/art/background.gif); image-rendering: pixelated;">
-    <img src="../static/art/wall.png" style="animation: wahookazooie 3s infinite; position: absolute; z-index: 1; image-rendering:pixelated; width: 90vw; height: auto">
-    <img src="../static/art/bartender.png" style="position: absolute; z-index: 2; image-rendering:pixelated; width: 90vw; height: auto">
-    <img src="../static/art/bar.png" style="animation: wahookazooie 3s infinite; position: absolute; z-index: 3; image-rendering:pixelated; width: 90vw; height:auto;">
-    <img src="../static/art/barstools.png" style="position: relative; z-index: 4; image-rendering:pixelated; width: 90vw; height:auto;">
-</div>
-{% endblock %}
+    <style>
+      @keyframes wahookazooie {
+        0% {filter: hue-rotate(0deg);}
+        100% {filter: hue-rotate(360deg);}
+      }
+    </style>
+
+  </head>
+  <body style = "background-color: black; height: 100%; text-align: center;">
+    <nav class="top-bar topbar-responsive">
+      <div class="top-bar-title">
+        <a class="topbar-responsive-logo megrim-regular" href="#"><strong>S.T.A.R.D.R.O.P</strong></a>
+      </div>
+      <div id="topbar-responsive" class="topbar-responsive-links">
+        <div class="top-bar-right">
+          <ul class="menu simple vertical medium-horizontal">
+            <li>
+              <button type="button" class="button hollow topbar-responsive-button">Home</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div style="display: inline-block; height: 100%; background-image: url(../static/art/background.gif); image-rendering: pixelated;">
+      <img src="../static/art/wall.png" style="animation: wahookazooie 3s infinite; position: absolute; z-index: 1; image-rendering:pixelated; width: 90vw; height: auto">
+      <img src="../static/art/bartender.png" style="position: absolute; z-index: 2; image-rendering:pixelated; width: 90vw; height: auto">
+      <img src="../static/art/bar.png" style="animation: wahookazooie 3s infinite; position: absolute; z-index: 3; image-rendering:pixelated; width: 90vw; height:auto;">
+      <img src="../static/art/barstools.png" style="position: relative; z-index: 4; image-rendering:pixelated; width: 90vw; height:auto;">
+    </div>
+  </body>
+</html>

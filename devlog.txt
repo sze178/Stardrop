@@ -118,4 +118,3 @@ kiranS -- 2025-12-11 21:00
 
 kiranS --2025-12-12 10:30
 - Added flask get method for game_scene 
-- Integrated template.html for game_scene
