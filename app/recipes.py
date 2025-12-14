@@ -1,6 +1,8 @@
 import requests
 
-def request_ingredients(id):
+ingredient_data = {}
+
+def request_drink(id):
     url = f"https://boozeapi.com/api/v1/cocktails/{id}"
 
     try:
@@ -8,13 +10,10 @@ def request_ingredients(id):
         response.raise_for_status()
 
         result = response.json()
-        ingredients = result["ingredients"]
-        print(result["name"] + ":")
-        for ingredient in ingredients:
-            print(ingredient["name"])
+
+        drink_data = {result["name"]: result["ingredients"]}
+
+        return drink_data
     except requests.exceptions.RequestException as e:
         print(e)
 
-request_ingredients(58)
-print("---------------")
-request_ingredients(809)

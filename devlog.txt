@@ -116,5 +116,12 @@ jalenC -- 2025-12-11 10:57
 kiranS -- 2025-12-11 21:00
 - Added functionality to alert close buttons and made appearance pretty
 
-kiranS --2025-12-12 10:30
+kiranS -- 2025-12-12 10:30
 - Added flask get method for game_scene 
+
+alvinS -- 2025-12-13 22:28
+- Added game_state.py and wrote foundation for npc drink ordering
+- Added data structures to store npc preferences and functions to get npc info
+- Updated recipe.py to not just test for requesting but to return information to be used in game_state.py
+- Updated gitignore to actually ignore files cuz the name was wrong
+- Now ignores ALL db files, make sure that all databases initiate with proper info
