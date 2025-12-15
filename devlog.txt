@@ -126,10 +126,16 @@ alvinS -- 2025-12-13 22:28
 - Updated gitignore to actually ignore files cuz the name was wrong
 - Now ignores ALL db files, make sure that all databases initiate with proper info
 
-jamesS -- 2025-12-15 10:39
+jamesS -- 2025-12-15 10:39flex
 - Added redirect-to-game_scene button in index.html
 - Styled button appearance for fade in/out
 - Added if_logged_in check to index.html
 
 kiranS -- 2025-12-15 10:45
 - Fixed navbar buttons for game_scene
+
+alvinS -- 2025-12-15 13:15
+- Added scrollable sidebar for ingredients
+- Changed image layering structure, need to seperate images so wall and space don't change color
+- Added npc ideas to game_state.py, no data yet
+- To-do: try making game and sidebar same height + keep navbar on screen?

@@ -9,13 +9,13 @@ a1 = ["test1", "test2", "test3", "test4"]
 b1 = []
 a2 = []
 b2 = []
-#npcDrinkPreferences: 
-# name: preferred flavor (sour/sweet/fruity/milky), 
-#       liked ingredient group (api delivered/either ingredients with this word in name, or this word as its type), 
+#npcDrinkPreferences:
+# name: preferred flavor (sour/sweet/fruity/milky),
+#       liked ingredient group (api delivered/either ingredients with this word in name, or this word as its type),
 #       disliked ingredient group (api delivered/either ingredients with this word in name, or this word as its type),
 #       specific ingredient id that is extra liked
 #       drink selection alcohol (hard-coded),
-#       drink selection no alcohol (hard-coded)  
+#       drink selection no alcohol (hard-coded)
 #       heavy alcohol if alcohol true
 npcDrinkPreferences = {"santa": {"flavor": "sweet",
                                  "likes": "mint",
@@ -30,7 +30,9 @@ npcDrinkPreferences = {"santa": {"flavor": "sweet",
                                  "favorite": 225156,
                                  "alcohol" : a1,
                                  "no_alcohol": b1,
-                                 "heavy_drinker": True}}
+                                 "heavy_drinker": True},
+                       "agent j": {},
+                       "pirate" : {}}
 
 
 
@@ -43,5 +45,5 @@ def npc_drink_order(name):
         drinkSet = npcDrinkPreferences[name][4]
     else:
         drinkSet = npcDrinkPreferences[name][5]
-    
+
     return drinkSet[random.randint(0, len(drinkSet) - 1)]
