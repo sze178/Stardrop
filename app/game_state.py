@@ -33,6 +33,7 @@ npcDrinkPreferences = {"santa": {"flavor": "sweet",
                                  "heavy_drinker": True}}
 
 
+
 def get_npc_drink_preferences(name):
     return npcDrinkPreferences[name]
 

@@ -4,14 +4,10 @@ from db import select_query, insert_query, general_query
 
 GoldAPIKey = ""
 
-
-
 DB_FILE = "data.db"
-
 
 db = sqlite3.connect(DB_FILE)
 c = db.cursor()
-
 
 c.executescript("""
 CREATE TABLE IF NOT EXISTS players (
