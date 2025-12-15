@@ -125,3 +125,8 @@ alvinS -- 2025-12-13 22:28
 - Updated recipe.py to not just test for requesting but to return information to be used in game_state.py
 - Updated gitignore to actually ignore files cuz the name was wrong
 - Now ignores ALL db files, make sure that all databases initiate with proper info
+
+jamesS -- 2025-12-15 10:39
+- Added redirect-to-game_scene button in index.html
+- Styled button appearance for fade in/out
+- Added if_logged_in check to index.html
