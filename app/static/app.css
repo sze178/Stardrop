@@ -177,4 +177,17 @@
   font-weight: bold;
 }
 
+.order-button {
+  display:inline-block;
+  vertical-align: middle;
+  background-color:#ffae00;
+  position: absolute; 
+  transform: translate(-50%, -50%); 
+  z-index: 100; 
+  border-radius: 50%; 
+  width: 3%; 
+  aspect-ratio: 1 / 1;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+}
 

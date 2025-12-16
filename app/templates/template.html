@@ -9,11 +9,6 @@
     <head>
         <title>Stardrop</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
-        <script>
-            $(document).foundation();
-        </script>
         <link rel="stylesheet" type="text/css" href="../static/app.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,5 +80,11 @@
         {% endwith %}
 
         {% block content %}{% endblock %}
+        
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+        <script>
+            $(document).foundation();
+        </script>
     </body>
 </html>

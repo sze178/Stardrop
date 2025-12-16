@@ -157,3 +157,9 @@ kiranS -- 2025-12-16 11:00
 alvins -- 2025-12-16 11:01
 - Added NPC data
 - Small edit to NPC drink order function to improve randomness
+
+kiranS -- 2025-12-16 6:45
+- Fixed script initialization --> moved to end of body
+- Got popup skeleton functional
+- Made order buttons move with the images relative to the screen
+- Made buttons look better and scale with window size

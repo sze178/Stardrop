@@ -9,11 +9,6 @@
   <head>
     <title>Stardrop</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
-    <script>
-      $(document).foundation();
-    </script>
     <link rel="stylesheet" type="text/css" href="../static/app.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,11 +42,14 @@
       </div>
     </nav>
     <div id="content" style = "display:flex; text-align: left;">
-      <div style="flex: 80%; image-rendering: pixelated;">
-        <img src="../static/art/wall.png" style="background-image: url(../static/art/background.gif); animation: wahookazooie 3s infinite; position: absolute; z-index: 1; width: 80%;">
-        <img src="../static/art/bartender.png" style="position: absolute; z-index: 2; width: 80%">
-        <img src="../static/art/bar.png" style="animation: wahookazooie 3s infinite; position: absolute; z-index: 3; width: 80%;">
-        <img src="../static/art/barstools.png" style="position: absolute; z-index: 4; width: 80%;">
+      <div style="flex: 80%; image-rendering: pixelated; position: relative">
+        <div style="position:relative; width: 100%; padding-bottom: 56.25%">
+        <img src="../static/art/wall.png" style="background-image: url(../static/art/background.gif); animation: wahookazooie 3s infinite; position: absolute; z-index: 1; width: 100%;">
+        <img src="../static/art/bartender.png" style="position: absolute; z-index: 2; width: 100%">
+        <img src="../static/art/bar.png" style="animation: wahookazooie 3s infinite; position: absolute; z-index: 3; width: 100%;">
+        <img src="../static/art/barstools.png" style="position: absolute; z-index: 4; width: 100%;">
+        <p><button class="order-button" type="button" data-open="order" style="left: 50%; top: 80%;">!</button></p>
+        </div>
       </div>
       <div style="flex: 20%; color: white; height: 85vh; overflow: auto">
         <h3>SKILLS</h3>
@@ -80,16 +78,20 @@
         </ul>
       </div>
     </div>
-    <form action="/game_scene" method="POST">
-    <p><button class="button" type="submit" data-open="order">Order</button></p>
-    </form>
-    <div class="reveal" id="order" data-reveal>
+
+    <div class="reveal" id="order" data-reveal data-close-on-click="false" data-close-on-esc="false" data-multiple-opened="true"> 
       <h1>Awesome. I Have It.</h1>
       <p class="lead">Your couch. It is mine.</p>
-      <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+      <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins! 1</p>
       <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    <script>
+      $(document).foundation();
+    </script>
   </body>
 </html>
