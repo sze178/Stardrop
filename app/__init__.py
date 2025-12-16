@@ -101,6 +101,11 @@ def settings_get():
 def game_scene_get():
     return render_template("game_scene.html")
 
+@app.post("/game_scene")
+def game_scene_post():
+    print("abc")
+    return redirect(url_for("game_scene_get"))
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
