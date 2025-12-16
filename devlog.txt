@@ -144,3 +144,9 @@ kiranS -- 2025-12-15 20:20
 - Fixed minor issues in js cdn calls
 - Fixed html extension errors in template.html
 - Tried (unsuccessfully) to make navbars sticky -- will stop messing with windows
+
+alvinS -- 2025-12-15 22:09
+- Tiny edit on game_scene.html to make sidebar shorter
+- Scrubbed through 450+ drinks to compile a short list of possible orders  (about 200 left)
+- Skipped drinks with inappropriate names, too few ingredients, incomplete ingredient lists, or ingredients that were too unique.
+- Some skipped were usable and can be taken if we need more

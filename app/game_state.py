@@ -5,10 +5,12 @@ alcoholOn = True
 
 #drink selections / list of ids from api to randomly choose from
 #a if alcohol b if not
-a1 = ["test1", "test2", "test3", "test4"]
-b1 = []
-a2 = []
-b2 = []
+#1 fruity/sour
+#2 milky/sweet
+a1 = [58, 8603, 12212, 35427, 78945, 172502, 190753, 224615, 367321, 424489, 466077]
+b1 = [43900, 357225, 499591, 627193, 778686, 805924]
+a2 = [13554, 88538, 99612, 111282, 330969, 334642, 375884, 579225, 674837]
+b2 = [42501, 264361, 434283, 577385, 934558]
 #npcDrinkPreferences:
 # name: preferred flavor (sour/sweet/fruity/milky),
 #       liked ingredient group (api delivered/either ingredients with this word in name, or this word as its type),
