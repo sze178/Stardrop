@@ -139,3 +139,8 @@ alvinS -- 2025-12-15 13:15
 - Changed image layering structure, need to seperate images so wall and space don't change color
 - Added npc ideas to game_state.py, no data yet
 - To-do: try making game and sidebar same height + keep navbar on screen?
+
+kiranS -- 2025-12-15 20:20
+- Fixed minor issues in js cdn calls
+- Fixed html extension errors in template.html
+- Tried (unsuccessfully) to make navbars sticky -- will stop messing with windows

@@ -7,8 +7,13 @@
 <html>
 
   <head>
+    <title>Stardrop</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    <script>
+      $(document).foundation();
+    </script>
     <link rel="stylesheet" type="text/css" href="../static/app.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +46,7 @@
         </div>
       </div>
     </nav>
-    <div style = "display:flex; text-align: left;">
+    <div id="content" style = "display:flex; text-align: left;">
       <div style="flex: 80%; image-rendering: pixelated;">
         <img src="../static/art/wall.png" style="background-image: url(../static/art/background.gif); animation: wahookazooie 3s infinite; position: absolute; z-index: 1; width: 80%;">
         <img src="../static/art/bartender.png" style="position: absolute; z-index: 2; width: 80%">
