@@ -23,18 +23,30 @@ npcDrinkPreferences = {"santa": {"flavor": "sweet",
                                  "likes": "mint",
                                  "dislikes": "fruit",
                                  "favorite": 402412,
-                                 "alcohol" : a1,
-                                 "no_alcohol": b1,
+                                 "alcohol" : a2,
+                                 "no_alcohol": b2,
                                  "heavy_drinker": False},
-                       "cowboy": {"flavor": "milky",
-                                 "likes": "cream",
-                                 "dislikes": "syrup",
-                                 "favorite": 225156,
-                                 "alcohol" : a1,
-                                 "no_alcohol": b1,
-                                 "heavy_drinker": True},
-                       "agent j": {},
-                       "pirate" : {}}
+                       "cowboy": {"flavor": "fruity",
+                                  "likes": "syrup",
+                                   "dislikes": "cream",
+                                   "favorite": 225156,
+                                   "alcohol" : a1,
+                                   "no_alcohol": b1,
+                                   "heavy_drinker": True},
+                       "agent j": {"flavor": "milky",
+                                   "likes": "chocolate",
+                                   "dislikes": "soda",
+                                   "favorite": ,
+                                   "alcohol" : a2,
+                                   "no_alcohol": b2,
+                                   "heavy_drinker": False},
+                       "pirate" : {"flavor": "sour",
+                                   "likes": "fruit",
+                                   "dislikes": "coffee",
+                                   "favorite": ,
+                                   "alcohol" : a1,
+                                   "no_alcohol": b1,
+                                   "heavy_drinker": True}}
 
 
 
@@ -44,8 +56,12 @@ def get_npc_drink_preferences(name):
 def npc_drink_order(name):
     drinkSet = []
     if alcoholOn:
-        drinkSet = npcDrinkPreferences[name][4]
+        drinkSet = npcDrinkPreferences[name][4] + npcDrinkPreferences[name][5]
     else:
         drinkSet = npcDrinkPreferences[name][5]
 
-    return drinkSet[random.randint(0, len(drinkSet) - 1)]
+
+    if random.randInt(1, 10) > 9:
+        return drinkSet[random.randint(0, len(drinkSet) - 1)]
+    else:
+        return 0

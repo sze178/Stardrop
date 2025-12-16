@@ -153,3 +153,7 @@ alvinS -- 2025-12-15 22:09
 
 kiranS -- 2025-12-16 11:00
 - Started on code for modal popup in game scene
+
+alvins -- 2025-12-16 11:01
+- Added NPC data
+- Small edit to NPC drink order function to improve randomness
