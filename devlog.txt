@@ -177,5 +177,8 @@ jamesS -- 2025-12-16 20:31
 jamesS -- 2025-12-17 10:09
 - Updated index to show button with no action, only have action when logged in
 
-jalenC -- 2025-12-16 10:10
+jalenC -- 2025-12-17 10:10
 - added request_position() using WhereIsISS API and request_value() using GoldAPI inside recipes.py temporarily
+
+kiranS --2025-12-17 10:40
+- added ingredient radio buttons to sidebar

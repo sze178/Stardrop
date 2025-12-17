@@ -79,15 +79,21 @@
           <li>A Site</li>
           <li>Another Site</li>
         </ul>
+        {% for item in supplies.keys()%}
+            {{ item }} 
+            <input id="normal" type="radio" name="{{ item }}"></input> <!-- make two columns of buttons aligned and add title -->
+            <input id="extra" type="radio" name="{{ item }}"></input>
+            <br>
+        {% endfor %}
       </div>
     </div>
 
-    <div class="reveal" id="order" data-reveal data-close-on-click="false" data-close-on-esc="false" data-reveal-open="true"> 
+    <div class="reveal" id="order" data-reveal data-close-on-click="false" data-close-on-esc="false" data-reveal-open="true" data-overlay="false"> 
       <h1>Ingredients</h1>
       <form action="#">
         <div>
           {% for item in supplies.keys()%}
-            <input id="{{ item }}" type="checkbox"></input>{{ item }}</li>
+            <input id="normal" type="radio" name="{{ item }}"></input> {{ item }}</li>
             <br>
           {% endfor %}
         </div>
