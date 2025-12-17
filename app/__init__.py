@@ -18,9 +18,11 @@ CREATE TABLE IF NOT EXISTS players (
     money_earned REAL,
     npc_1_interact INTEGER DEFAULT 0,
     npc_2_interact INTEGER DEFAULT 0,
+    supplies TEXT
     
     time_period DATETIME,
     alcohol_on BOOLEAN DEFAULT TRUE
+            
 );
 """)
 
@@ -99,7 +101,19 @@ def settings_get():
 
 @app.get('/game_scene')
 def game_scene_get():
-    return render_template("game_scene.html")
+    seat_number = request.args.get("seat_number")
+    supplies = {"Vodka": 3, "Gin": 2} #placeholder for pull from db
+    return render_template("game_scene.html", order=(seat_number is not None), supplies=supplies)
+
+
+# @app.post("/game_scene")
+# def game_scene_post():
+#     print("abc")
+#     return redirect(url_for("game_scene_get"))
+
+@app.post("/order")
+def take_order():
+    return redirect(url_for("game_scene_get", seat_number=request.form.get("seat_number")))
 
 if __name__ == "__main__":
     app.debug = True
