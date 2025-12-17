@@ -26,13 +26,16 @@
   <body style = "background-color: black; height: 100%; text-align: center;">
     <nav class="top-bar topbar-responsive">
       <div class="top-bar-title">
-        <a class="topbar-responsive-logo megrim-regular" href="#"><strong>S.T.A.R.D.R.O.P</strong></a>
+        <a class="topbar-responsive-logo megrim-regular" href="{{url_for('index_get')}}"><strong>S.T.A.R.D.R.O.P</strong></a>
       </div>
       <div id="topbar-responsive" class="topbar-responsive-links">
         <div class="top-bar-right">
           <ul class="menu simple vertical medium-horizontal">
             <li>
-              <button type="button" class="button hollow topbar-responsive-button">Home</button>
+                <a href="{{url_for('settings_get')}}"><button type="button" class="button hollow topbar-responsive-button">Settings</button></a>
+            </li>
+            <li>
+                <a href="{{url_for('logout_get')}}"><button type="button" class="button hollow topbar-responsive-button">Log Out</button></a>
             </li>
           </ul>
         </div>

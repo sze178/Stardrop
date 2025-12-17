@@ -15,18 +15,28 @@
       height: 300px;
       background-image: url(../static/art/placeholder.gif);
       background-size: cover;
-      transition: background-image 3s ease-in-out;
+      transition: background-image 0.1s ease-in-out;
     }
 
     .image-hover:hover {
-        background-image: url(../static/art/background.gif);
+        background-image: url(../static/art/santa.png);
+        width:400px;
+        height:300px;
     }
 </style>
 
+{% if "username" not in session.keys() %}
+
 <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
 
-<a href="{{url_for('login_get')}}">
-  <div class = "image-hover" style="display: block; margin-left: auto; margin-right: auto; margin-top:200px; margin-bottom: auto;"></div>
+{% else %}
+
+<a href="{{url_for('game_scene_get')}}">
+  <div href="{{url_for('game_scene_get')}}" class = "image-hover" style="display: block; margin-left: auto; margin-right: auto; margin-top:200px; margin-bottom: auto;"></div>
 </a>
+
+<html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
+
+{% endif %}
 
 {% endblock %}
