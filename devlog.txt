@@ -170,3 +170,6 @@ kiranS -- 2025-12-16 8:15
 - Added placeholder ingredient dictionary and seat boolean to game_scene_get return
 - Added check for order taken that opens popup using js call if true
 - Added basic checkbox list of ingredients generated from ingredient dictionary passed by flask
+
+jamesS -- 2025-12-16 20:31
+- Added an algorithm to process ingredients of all available drinks on drinkapi in recipes.py
