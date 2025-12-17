@@ -117,7 +117,7 @@ kiranS -- 2025-12-11 21:00
 - Added functionality to alert close buttons and made appearance pretty
 
 kiranS -- 2025-12-12 10:30
-- Added flask get method for game_scene 
+- Added flask get method for game_scene
 
 alvinS -- 2025-12-13 22:28
 - Added game_state.py and wrote foundation for npc drink ordering
@@ -176,3 +176,6 @@ jamesS -- 2025-12-16 20:31
 
 jamesS -- 2025-12-17 10:09
 - Updated index to show button with no action, only have action when logged in
+
+jalenC -- 2025-12-16 10:10
+- added request_position() using WhereIsISS API and request_value() using GoldAPI inside recipes.py temporarily
