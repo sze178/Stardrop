@@ -126,10 +126,6 @@ alvinS -- 2025-12-13 22:28
 - Updated gitignore to actually ignore files cuz the name was wrong
 - Now ignores ALL db files, make sure that all databases initiate with proper info
 
-<<<<<<< HEAD
-jalenC -- 2025-12-15 11:01
-- added request_position() using WhereIsISS API and request_value() using GoldAPI inside recipes.py temporarily
-=======
 jamesS -- 2025-12-15 10:39
 - Added redirect-to-game_scene button in index.html
 - Styled button appearance for fade in/out
@@ -137,4 +133,46 @@ jamesS -- 2025-12-15 10:39
 
 kiranS -- 2025-12-15 10:45
 - Fixed navbar buttons for game_scene
->>>>>>> refs/remotes/origin/main
+
+alvinS -- 2025-12-15 13:15
+- Added scrollable sidebar for ingredients
+- Changed image layering structure, need to seperate images so wall and space don't change color
+- Added npc ideas to game_state.py, no data yet
+- To-do: try making game and sidebar same height + keep navbar on screen?
+
+kiranS -- 2025-12-15 20:20
+- Fixed minor issues in js cdn calls
+- Fixed html extension errors in template.html
+- Tried (unsuccessfully) to make navbars sticky -- will stop messing with windows
+
+alvinS -- 2025-12-15 22:09
+- Tiny edit on game_scene.html to make sidebar shorter
+- Scrubbed through 450+ drinks to compile a short list of possible orders  (about 200 left)
+- Skipped drinks with inappropriate names, too few ingredients, incomplete ingredient lists, or ingredients that were too unique.
+- Some skipped were usable and can be taken if we need more
+
+kiranS -- 2025-12-16 11:00
+- Started on code for modal popup in game scene
+
+alvins -- 2025-12-16 11:01
+- Added NPC data
+- Small edit to NPC drink order function to improve randomness
+
+kiranS -- 2025-12-16 6:45
+- Fixed script initialization --> moved to end of body
+- Got popup skeleton functional
+- Made order buttons move with the images relative to the screen
+- Made buttons look better and scale with window size
+
+kiranS -- 2025-12-16 8:15
+- Made order button a form that passes seat number into flask
+- Made take_order method in __init__.py to pass on seat data to game_scene_get
+- Added placeholder ingredient dictionary and seat boolean to game_scene_get return
+- Added check for order taken that opens popup using js call if true
+- Added basic checkbox list of ingredients generated from ingredient dictionary passed by flask
+
+jamesS -- 2025-12-16 20:31
+- Added an algorithm to process ingredients of all available drinks on drinkapi in recipes.py
+
+jalenC -- 2025-12-15 11:01
+- added request_position() using WhereIsISS API and request_value() using GoldAPI inside recipes.py temporarily
