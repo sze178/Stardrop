@@ -163,3 +163,10 @@ kiranS -- 2025-12-16 6:45
 - Got popup skeleton functional
 - Made order buttons move with the images relative to the screen
 - Made buttons look better and scale with window size
+
+kiranS -- 2025-12-16 8:15
+- Made order button a form that passes seat number into flask
+- Made take_order method in __init__.py to pass on seat data to game_scene_get
+- Added placeholder ingredient dictionary and seat boolean to game_scene_get return
+- Added check for order taken that opens popup using js call if true
+- Added basic checkbox list of ingredients generated from ingredient dictionary passed by flask

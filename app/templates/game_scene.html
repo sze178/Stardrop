@@ -48,7 +48,10 @@
         <img src="../static/art/bartender.png" style="position: absolute; z-index: 2; width: 100%">
         <img src="../static/art/bar.png" style="animation: wahookazooie 3s infinite; position: absolute; z-index: 3; width: 100%;">
         <img src="../static/art/barstools.png" style="position: absolute; z-index: 4; width: 100%;">
-        <p><button class="order-button" type="button" data-open="order" style="left: 50%; top: 80%;">!</button></p>
+        <form action="/order" method="POST">
+          <input type="hidden" name="seat_number" value="1">
+          <p><button class="order-button" type="submit" style="left: 50%; top: 80%;">!</button></p>
+        </form>
         </div>
       </div>
       <div style="flex: 20%; color: white; height: 85vh; overflow: auto">
@@ -79,19 +82,26 @@
       </div>
     </div>
 
-    <div class="reveal" id="order" data-reveal data-close-on-click="false" data-close-on-esc="false" data-multiple-opened="true"> 
-      <h1>Awesome. I Have It.</h1>
-      <p class="lead">Your couch. It is mine.</p>
-      <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins! 1</p>
-      <button class="close-button" data-close aria-label="Close modal" type="button">
-        <span aria-hidden="true">&times;</span>
-      </button>
+    <div class="reveal" id="order" data-reveal data-close-on-click="false" data-close-on-esc="false" data-reveal-open="true"> 
+      <h1>Ingredients</h1>
+      <form action="#">
+        <div>
+          {% for item in supplies.keys()%}
+            <input id="{{ item }}" type="checkbox"></input>{{ item }}</li>
+            <br>
+          {% endfor %}
+        </div>
+        <button class="button" type="submit">Make Drink</button>
+      </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
     <script>
       $(document).foundation();
+      {% if order %}
+        $('#order').foundation('open');
+      {% endif %}
     </script>
   </body>
 </html>
