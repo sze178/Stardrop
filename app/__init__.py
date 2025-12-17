@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, flash, redirect, session, url
 import sqlite3
 from db import select_query, insert_query, general_query
 
+from game_state import *
+from recipes import *
+
 GoldAPIKey = ""
 
 DB_FILE = "data.db"
@@ -13,16 +16,16 @@ c.executescript("""
 CREATE TABLE IF NOT EXISTS players (
     username TEXT PK,
     name TEXT,
-    
+
     password TEXT,
     money_earned REAL,
     npc_1_interact INTEGER DEFAULT 0,
     npc_2_interact INTEGER DEFAULT 0,
     supplies TEXT
-    
+
     time_period DATETIME,
     alcohol_on BOOLEAN DEFAULT TRUE
-            
+
 );
 """)
 
@@ -69,7 +72,7 @@ def login_post():
         ## print("XXXXXXX")
         return redirect(url_for("login_get"))
     session["username"] = username
-    return redirect(url_for("index_get")) 
+    return redirect(url_for("index_get"))
 
 
 @app.get("/register")
@@ -102,7 +105,10 @@ def settings_get():
 @app.get('/game_scene')
 def game_scene_get():
     seat_number = request.args.get("seat_number")
-    supplies = {"Vodka": 3, "Gin": 2} #placeholder for pull from db
+    supplies = []
+    if seat_number:
+        drink_id = npc_drink_order(npc_at_seat[int(seat_number) - 1])
+        supplies = request_drink(drink_id)["ingredients"] #placeholder for pull from db
     return render_template("game_scene.html", order=(seat_number is not None), supplies=supplies)
 
 
@@ -118,4 +124,3 @@ def take_order():
 if __name__ == "__main__":
     app.debug = True
     app.run()
-

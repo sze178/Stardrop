@@ -2,6 +2,7 @@
 import random
 
 alcoholOn = True
+npc_at_seat = ["santa"]
 
 #drink selections / list of ids from api to randomly choose from
 #a if alcohol b if not
@@ -36,14 +37,14 @@ npcDrinkPreferences = {"santa": {"flavor": "sweet",
                        "agent j": {"flavor": "milky",
                                    "likes": "chocolate",
                                    "dislikes": "soda",
-                                   "favorite": ,
+                                   "favorite": 0,
                                    "alcohol" : a2,
                                    "no_alcohol": b2,
                                    "heavy_drinker": False},
                        "pirate" : {"flavor": "sour",
                                    "likes": "fruit",
                                    "dislikes": "coffee",
-                                   "favorite": ,
+                                   "favorite": 0,
                                    "alcohol" : a1,
                                    "no_alcohol": b1,
                                    "heavy_drinker": True}}
@@ -56,12 +57,12 @@ def get_npc_drink_preferences(name):
 def npc_drink_order(name):
     drinkSet = []
     if alcoholOn:
-        drinkSet = npcDrinkPreferences[name][4] + npcDrinkPreferences[name][5]
+        drinkSet = npcDrinkPreferences[name]["alcohol"] + npcDrinkPreferences[name]["no_alcohol"]
     else:
-        drinkSet = npcDrinkPreferences[name][5]
+        drinkSet = npcDrinkPreferences[name]["no_alcohol"]
 
 
-    if random.randInt(1, 10) > 9:
+    if random.randint(1, 50) < 49:
         return drinkSet[random.randint(0, len(drinkSet) - 1)]
     else:
         return 0

@@ -180,5 +180,12 @@ jamesS -- 2025-12-17 10:09
 jalenC -- 2025-12-17 10:10
 - added request_position() using WhereIsISS API and request_value() using GoldAPI inside recipes.py temporarily
 
-kiranS --2025-12-17 10:40
+kiranS -- 2025-12-17 10:40
 - added ingredient radio buttons to sidebar
+
+alvinS -- 2025-12-17 12:40
+- Added temp file to parse through all drink ingredients to make an ingredients dictionary
+- Removed old code for doing above task since it was broken
+- Made pop up show ingredients for npc ordered drink
+- Updated some variable types from dictionary to array
+- Todo: Change variable names to match what the currently are

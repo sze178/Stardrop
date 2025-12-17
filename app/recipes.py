@@ -1,8 +1,14 @@
 import requests
 
-ingredient_data = {}
+ingredient_data = {"Añejo Rum": 0}
+
+#['Añejo Rum', 'Tia Maria', 'Vodka', 'Orange Juice', 'Lemon Juice', 'Light Rum', 'Lime', 'Sugar', 'Mint', 'Jack Daniels', 'Midori Melon Liqueur', 'Sour Mix', 'Dark Rum', 'Pineapple Juice', 'Grenadine', 'Sugar Syrup', 'Angostura Bitters', 'Rum', 'Grapefruit Juice', 'Maraschino Liqueur', 'Lime Juice', 'Brandy', 'lemon', 'Powdered Sugar', 'Cherry', 'Sweet Vermouth', 'Bourbon', 'Ice', 'Maraschino Cherry', 'Orange Peel', 'Coconut Milk', 'Pineapple', 'Tequila', 'Gin', 'Coca-Cola', 'Lemon Peel', 'Sherry', 'Orange Bitters', 'Lemonade', 'Water', 'Ginger', 'Guava juice', 'Peach Nectar', 'Brown Sugar', 'Cinnamon', 'Cloves', 'Passion fruit juice', 'Ginger Ale', 'Soda Water', 'Mango', 'Orange', 'Apple Cider', 'Allspice', 'Nutmeg', 'Light Cream', 'Egg White', 'Coffee Liqueur', 'Heavy cream', 'Chocolate Liqueur', 'Amaretto', 'Chocolate Sauce', 'Salted Chocolate', 'Scotch', 'Curacao', 'Half-and-half', 'Condensed Milk', 'Coconut Syrup', 'Chocolate Syrup', 'Kahlua', 'Baileys Irish Cream', 'Vanilla Ice-Cream', 'Oreo cookie', 'Dark Creme De Cacao', 'Coffee', 'Banana Liqueur', 'Creme De Cacao', 'Chocolate Ice-cream', 'Chocolate Milk', 'Whipped Cream', 'Banana', 'Milk', 'Vanilla', 'Chocolate', 'Espresso', 'Egg Yolk']
+
 
 def request_drink(id):
+    if id == 0:
+        return {"drink": "ANYTHING", "ingredients": ["uranium"]}
+
     url = f"https://boozeapi.com/api/v1/cocktails/{id}"
 
     try:
@@ -10,8 +16,11 @@ def request_drink(id):
         response.raise_for_status()
 
         result = response.json()
-
-        drink_data = {result["name"]: result["ingredients"]}
+        ingredients = []
+        for i in result["ingredients"]:
+            ingredients.append(i["name"])
+        drink_data = {"drink": result["name"],
+                      "ingredients": ingredients}
 
         return drink_data
     except requests.exceptions.RequestException as e:
@@ -21,23 +30,6 @@ a1 = [58, 8603, 12212, 35427, 78945, 172502, 190753, 224615, 367321, 424489, 466
 b1 = [43900, 357225, 499591, 627193, 778686, 805924]
 a2 = [13554, 88538, 99612, 111282, 330969, 334642, 375884, 579225, 674837]
 b2 = [42501, 264361, 434283, 577385, 934558]
-
-def process_drink_response(drink_resp: dict, ingredient_data: dict):
-    # drink_resp looks like: { "Drink Name": [ { "id": ..., "name": ... }, ... ] }
-    for _drink_name, ingredients in (drink_resp or {}).items():
-        for ing in ingredients or []:
-            ing_name = ing.get("name")
-            ing_id = ing.get("id")
-            if ing_name and ing_id is not None and ing_name not in ingredient_data:
-                ingredient_data[ing_name] = ing_id
-
-all_drink_ids = []
-for ids in (a1, b1, a2, b2):
-    all_drink_ids.extend(ids)
-
-for drink_id in all_drink_ids:
-    drink_resp = request_drink(drink_id)   # your function that returns the dict shown in your example
-    process_drink_response(drink_resp, ingredient_data)
 
 
 def request_position(timestamp):
@@ -87,4 +79,4 @@ def request_value(timestamp):
     except requests.exceptions.RequestException as e:
         print(e)
 
-request_value(20251216)
+# request_value(20251216)
