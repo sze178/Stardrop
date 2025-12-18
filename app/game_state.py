@@ -1,5 +1,6 @@
-
-import random
+from recipes import *
+from db import *
+import random, json
 
 alcoholOn = True
 npc_at_seat = ["santa"]
@@ -49,7 +50,13 @@ npcDrinkPreferences = {"santa": {"flavor": "sweet",
                                    "no_alcohol": b1,
                                    "heavy_drinker": True}}
 
-
+def initialize_supplies(username):
+    supply_dict={}
+    for item in get_all_ingredients():
+        supply_dict[item] = 0
+    # print(json.dumps(supply_dict))
+    general_query("UPDATE players SET supplies=? WHERE username=?", [json.dumps(supply_dict), username])
+    # print(select_query("SELECT * FROM players WHERE username=?", [username]))
 
 def get_npc_drink_preferences(name):
     return npcDrinkPreferences[name]

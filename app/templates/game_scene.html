@@ -55,32 +55,9 @@
         </div>
       </div>
       <div style="flex: 20%; color: white; height: 85vh; overflow: auto">
-        <h3>SKILLS</h3>
-        <ul class="portfolio-resume-side-list">
-          <li>Foundation</li>
-          <li>Moar Foundation</li>columns small-12 medium-7 portfolio-resume-scrolling
-          <li>SCSS</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>HTML</li>
-        </ul>
-        <h3>EXPERIENCE</h3>
-        <p>Look at all this amazing stuff that I've done!</p>
-        <ul>
-          <li>Just one damned thing</li>
-          <li>After another</li>
-          <li>Like history</li>
-          <li>One thing</li>
-          <li>After another</li>
-        </ul>
-        <h3>WORK</h3>
-        <p>I've done work too</p>
-        <ul>
-          <li>A Site</li>
-          <li>Another Site</li>
-        </ul>
-        {% for item in supplies%}
-            {{ item }}
+        <h3>Supplies</h3>
+        {% for item in supplies.keys()%}
+            {{ item }} ( {{ supplies[item] }} )
             <input id="normal" type="radio" name="{{ item }}"></input> <!-- make two columns of buttons aligned and add title -->
             <input id="extra" type="radio" name="{{ item }}"></input>
             <br>
@@ -92,8 +69,8 @@
       <h1>Ingredients</h1>
       <form action="#">
         <div>
-          {% for item in supplies%}
-            <input id="normal" type="radio" name="{{ item }}"></input> {{ item }}</li>
+          {% for item in ingredients%}
+            {{ item }}
             <br>
           {% endfor %}
         </div>

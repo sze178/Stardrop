@@ -189,3 +189,9 @@ alvinS -- 2025-12-17 12:40
 - Made pop up show ingredients for npc ordered drink
 - Updated some variable types from dictionary to array
 - Todo: Change variable names to match what the currently are
+
+kiranS -- 2025-12-17 7:45
+- Created supplies variable to be passed into the html
+- Added initialize_supplies method which creates a dict of all the ingredients and value 0, then converts to json and updates db
+- Improved formatting of game page and added quantities to supplies
+- Added login check in game_scene

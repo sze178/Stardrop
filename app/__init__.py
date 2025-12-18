@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect, session, url_for
-import sqlite3
-from db import select_query, insert_query, general_query
+import sqlite3, json
+from db import *
 
 from game_state import *
 from recipes import *
@@ -88,8 +88,9 @@ def register_post():
     if len(registered) != 0:
         flash("Username already exists", "error")
         return redirect(url_for("register_get"))
-    print(insert_query("players", {"username": username, "password": password}))
+    insert_query("players", {"username": username, "password": password})
     flash("Account successfully registered. Please log in.", "success")
+    initialize_supplies(username) # not entirely sure if this should go here
     return redirect(url_for("login_get"))
 
 @app.get('/logout')
@@ -104,12 +105,18 @@ def settings_get():
 
 @app.get('/game_scene')
 def game_scene_get():
+    if "username" not in session.keys():
+        flash("Please log in or register first.", "error")
+        return redirect(url_for("index_get"))
     seat_number = request.args.get("seat_number")
-    supplies = []
+    ingredients = []
+    # print(select_query("SELECT supplies FROM players WHERE username=?", [session["username"]]))
+    supplies=json.loads(select_query("SELECT supplies FROM players WHERE username=?", [session["username"]])[0]["supplies"])
     if seat_number:
         drink_id = npc_drink_order(npc_at_seat[int(seat_number) - 1])
-        supplies = request_drink(drink_id)["ingredients"] #placeholder for pull from db
-    return render_template("game_scene.html", order=(seat_number is not None), supplies=supplies)
+        ingredients = request_drink(drink_id)["ingredients"] 
+    # 
+    return render_template("game_scene.html", order=(seat_number is not None), ingredients=ingredients, supplies=supplies)
 
 
 # @app.post("/game_scene")
