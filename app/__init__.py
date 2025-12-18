@@ -79,14 +79,23 @@ def game_scene_get():
         flash("Please log in or register first.", "error")
         return redirect(url_for("index_get"))
     seat_number = request.args.get("seat_number")
+    drink_name=""
     ingredients = []
     # print(select_query("SELECT supplies FROM players WHERE username=?", [session["username"]]))
     supplies=json.loads(select_query("SELECT supplies FROM players WHERE username=?", [session["username"]])[0]["supplies"])
+#    print(supplies.keys())
+#    print(list(supplies.keys()))
+#    print(list(supplies.keys()))
+    alphabetical_supplies=sorted(list(supplies.keys()))
+    quantities=[]
+    for item in alphabetical_supplies:
+        quantities.append(supplies[item])
     if seat_number:
         drink_id = npc_drink_order(npc_at_seat[int(seat_number) - 1])
-        ingredients = request_drink(drink_id)["ingredients"] 
-    # 
-    return render_template("game_scene.html", order=(seat_number is not None), ingredients=ingredients, supplies=supplies)
+        drink_dict = request_drink(drink_id)
+        ingredients = drink_dict["ingredients"] 
+        drink_name = drink_dict["drink"]
+    return render_template("game_scene.html", order=(seat_number is not None), drink_name=drink_name, ingredients=ingredients, supplies=alphabetical_supplies, quantities=quantities)
 
 
 # @app.post("/game_scene")

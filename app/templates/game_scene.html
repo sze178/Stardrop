@@ -59,11 +59,11 @@
         <div style="display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; width: 100%;">
           <div>Ingredient</div>
           <div>Amount</div>
-          <div style="text-align:center">Normal</div>
-          <div style="text-align:center">Extra</div>
-          {% for item in supplies.keys()%}
-              <div>{{ item }}</div> 
-              <div>{{ supplies[item] }}</div>
+          <div style="text-align:center">M</div>
+          <div style="text-align:center">L</div>
+          {% for i in range(supplies | length) %}
+              <div>{{ supplies[i] }}</div> 
+              <div>{{ quantities[i] }}</div>
               <div><input id="normal" type="radio" name="{{ item }}"></input></div>
               <div><input id="extra" type="radio" name="{{ item }}"></input></div>
           {% endfor %}
@@ -72,9 +72,11 @@
     </div>
 
     <div class="reveal" id="order" data-reveal data-close-on-click="false" data-close-on-esc="false" data-reveal-open="true" data-overlay="false">
-      <h1>Ingredients</h1>
+      <h1>Order</h1>
       <form action="#">
         <div>
+          <strong> {{ drink_name }} : </strong>
+          <br>
           {% for item in ingredients%}
             {{ item }}
             <br>
