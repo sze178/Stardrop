@@ -56,12 +56,18 @@
       </div>
       <div style="flex: 20%; color: white; height: 85vh; overflow: auto">
         <h3>Supplies</h3>
-        {% for item in supplies.keys()%}
-            {{ item }} ( {{ supplies[item] }} )
-            <input id="normal" type="radio" name="{{ item }}"></input> <!-- make two columns of buttons aligned and add title -->
-            <input id="extra" type="radio" name="{{ item }}"></input>
-            <br>
-        {% endfor %}
+        <div style="display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; width: 100%;">
+          <div>Ingredient</div>
+          <div>Amount</div>
+          <div style="text-align:center">Normal</div>
+          <div style="text-align:center">Extra</div>
+          {% for item in supplies.keys()%}
+              <div>{{ item }}</div> 
+              <div>{{ supplies[item] }}</div>
+              <div><input id="normal" type="radio" name="{{ item }}"></input></div>
+              <div><input id="extra" type="radio" name="{{ item }}"></input></div>
+          {% endfor %}
+        </div>
       </div>
     </div>
 

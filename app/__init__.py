@@ -1,3 +1,7 @@
+# S.T.A.R.D.R.O.P // Stardrop
+# Roster: Alvin Sze, Kiran Soemardjo, James Sun, Jalen Chen
+# SoftDev
+
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 import sqlite3, json
 from db import *
@@ -5,41 +9,7 @@ from db import *
 from game_state import *
 from recipes import *
 
-GoldAPIKey = ""
-
-DB_FILE = "data.db"
-
-db = sqlite3.connect(DB_FILE)
-c = db.cursor()
-
-c.executescript("""
-CREATE TABLE IF NOT EXISTS players (
-    username TEXT PK,
-    name TEXT,
-
-    password TEXT,
-    money_earned REAL,
-    npc_1_interact INTEGER DEFAULT 0,
-    npc_2_interact INTEGER DEFAULT 0,
-    supplies TEXT
-
-    time_period DATETIME,
-    alcohol_on BOOLEAN DEFAULT TRUE
-
-);
-""")
-
-
-c.executescript("""
-CREATE TABLE IF NOT EXISTS ingredients (
-    name TEXT PK,
-    color TEXT,
-    price REAL
-);
-""")
-
-db.commit()
-db.close()
+GoldAPIKey = "" #KEY HERE
 
 app = Flask(__name__)
 app.secret_key = "zxlkcvjlxzkjvlxcjlk"

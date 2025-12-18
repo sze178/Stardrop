@@ -1,3 +1,7 @@
+# S.T.A.R.D.R.O.P // Stardrop
+# Roster: Alvin Sze, Kiran Soemardjo, James Sun, Jalen Chen
+# SoftDev
+
 from recipes import *
 from db import *
 import random, json
