@@ -126,7 +126,7 @@ alvinS -- 2025-12-13 22:28
 - Updated gitignore to actually ignore files cuz the name was wrong
 - Now ignores ALL db files, make sure that all databases initiate with proper info
 
-jamesS -- 2025-12-15 10:39flex
+jamesS -- 2025-12-15 10:39
 - Added redirect-to-game_scene button in index.html
 - Styled button appearance for fade in/out
 - Added if_logged_in check to index.html
@@ -158,13 +158,13 @@ alvins -- 2025-12-16 11:01
 - Added NPC data
 - Small edit to NPC drink order function to improve randomness
 
-kiranS -- 2025-12-16 6:45
+kiranS -- 2025-12-16 18:45
 - Fixed script initialization --> moved to end of body
 - Got popup skeleton functional
 - Made order buttons move with the images relative to the screen
 - Made buttons look better and scale with window size
 
-kiranS -- 2025-12-16 8:15
+kiranS -- 2025-12-16 20:15
 - Made order button a form that passes seat number into flask
 - Made take_order method in __init__.py to pass on seat data to game_scene_get
 - Added placeholder ingredient dictionary and seat boolean to game_scene_get return
@@ -190,13 +190,17 @@ alvinS -- 2025-12-17 12:40
 - Updated some variable types from dictionary to array
 - Todo: Change variable names to match what the currently are
 
-kiranS -- 2025-12-17 7:45
+kiranS -- 2025-12-17 19:45
 - Created supplies variable to be passed into the html
 - Added initialize_supplies method which creates a dict of all the ingredients and value 0, then converts to json and updates db
 - Improved formatting of game page and added quantities to supplies
 - Added login check in game_scene
 
-kiranS -- 2025-12-17 8:25
+kiranS -- 2025-12-17 20:25
 - Moved db initialization to a separate build_db file
 - Added comment headings to all .py files
 - Made sidebar layout a grid with 1 column for ingredients, and amount in stock, and two columns for the portion sizes
+
+alvinS -- 2025-12-17 22:16
+- Made ingredient dictionary and hardcoded each flavor
+- Made devlog timestamps consistent

@@ -18,7 +18,7 @@ b1 = [43900, 357225, 499591, 627193, 778686, 805924]
 a2 = [13554, 88538, 99612, 111282, 330969, 334642, 375884, 579225, 674837]
 b2 = [42501, 264361, 434283, 577385, 934558]
 #npcDrinkPreferences:
-# name: preferred flavor (sour/sweet/fruity/milky),
+# name: preferred flavor (sour/sweet/fruity/milk/other),
 #       liked ingredient group (api delivered/either ingredients with this word in name, or this word as its type),
 #       disliked ingredient group (api delivered/either ingredients with this word in name, or this word as its type),
 #       specific ingredient id that is extra liked
@@ -26,9 +26,9 @@ b2 = [42501, 264361, 434283, 577385, 934558]
 #       drink selection no alcohol (hard-coded)
 #       heavy alcohol if alcohol true
 npcDrinkPreferences = {"santa": {"flavor": "sweet",
-                                 "likes": "mint",
+                                 "likes": "milk",
                                  "dislikes": "fruit",
-                                 "favorite": 402412,
+                                 "favorite": "Mint",
                                  "alcohol" : a2,
                                  "no_alcohol": b2,
                                  "heavy_drinker": False},
