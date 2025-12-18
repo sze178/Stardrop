@@ -4,19 +4,16 @@
 
 import requests
 
-ingredient_data = {"Añejo Rum" : {"flavor": "alcohol"},
-                   "Tia Maria" : {"flavor": "alcohol"},
+ingredient_data = {"Tia Maria" : {"flavor": "alcohol"},
                    "Vodka" : {"flavor": "alcohol"},
                    'Orange Juice' : {"flavor": "fruity"},
                    'Lemon Juice' : {"flavor": "sour"},
-                   'Light Rum' : {"flavor": "alcohol"},
                    'Lime' : {"flavor": "sour"},
                    'Sugar' : {"flavor": "sweet"},
                    'Mint' : {"flavor": "other"},
                    'Jack Daniels' : {"flavor": "alcohol"},
-                   'Midori Melon Liqueur' : {"flavor": "fruit"},
+                   'Melon Liqueur' : {"flavor": "fruit"},
                    'Sour Mix' : {"flavor": "sour"},
-                   'Dark Rum' : {"flavor": "alcohol"},
                    'Pineapple Juice' : {"flavor": "fruity"},
                    'Grenadine' : {"flavor": "sweet"},
                    'Sugar Syrup' : {"flavor": "sweet"},
@@ -26,7 +23,7 @@ ingredient_data = {"Añejo Rum" : {"flavor": "alcohol"},
                    'Maraschino Liqueur' : {"flavor": "sweet"},
                    'Lime Juice' : {"flavor": "sour"},
                    'Brandy' : {"flavor": "alcohol"},
-                   'lemon' : {"flavor": "sour"},
+                   'Lemon' : {"flavor": "sour"},
                    'Powdered Sugar' : {"flavor": "sweet"},
                    'Cherry' : {"flavor": "fruity"},
                    'Sweet Vermouth' : {"flavor": "alcohol"},
@@ -50,7 +47,7 @@ ingredient_data = {"Añejo Rum" : {"flavor": "alcohol"},
                    'Brown Sugar' : {"flavor": "sweet"},
                    'Cinnamon' : {"flavor": "other"},
                    'Cloves' : {"flavor": "other"},
-                   'Passion fruit juice' : {"flavor": "fruity"},
+                   'Passion Fruit Juice' : {"flavor": "fruity"},
                    'Ginger Ale' : {"flavor": "sweet"},
                    'Soda Water' : {"flavor": "other"},
                    'Mango' : {"flavor": "fruity"},
@@ -61,14 +58,14 @@ ingredient_data = {"Añejo Rum" : {"flavor": "alcohol"},
                    'Light Cream' : {"flavor": "milky"},
                    'Egg White' : {"flavor": "milky"},
                    'Coffee Liqueur' : {"flavor": "milky"},
-                   'Heavy cream' : {"flavor": "milky"},
+                   'Heavy Cream' : {"flavor": "milky"},
                    'Chocolate Liqueur' : {"flavor": "milky"},
                    'Amaretto' : {"flavor": "alcohol"},
                    'Chocolate Sauce' : {"flavor": "milky"},
                    'Salted Chocolate' : {"flavor": "sweet"},
                    'Scotch' : {"flavor": "alcohol"},
                    'Curacao' : {"flavor": "alcohol"},
-                   'Half-and-half' : {"flavor": "milky"},
+                   'Half-and-Half' : {"flavor": "milky"},
                    'Condensed Milk' : {"flavor": "sweet"},
                    'Coconut Syrup' : {"flavor": "sweet"},
                    'Chocolate Syrup' : {"flavor": "milky"},
@@ -76,11 +73,10 @@ ingredient_data = {"Añejo Rum" : {"flavor": "alcohol"},
                    'Baileys Irish Cream' : {"flavor": "alcohol"},
                    'Vanilla Ice-Cream' : {"flavor": "milky"},
                    'Oreo cookie' : {"flavor": "sweet"},
-                   'Dark Creme De Cacao' : {"flavor": "milky"},
                    'Coffee' : {"flavor": "milky"},
                    'Banana Liqueur' : {"flavor": "sweet"},
                    'Creme De Cacao' : {"flavor": "milky"},
-                   'Chocolate Ice-cream' : {"flavor": "milky"},
+                   'Chocolate Ice-Cream' : {"flavor": "milky"},
                    'Chocolate Milk' : {"flavor": "milky"},
                    'Whipped Cream' : {"flavor": "milky"},
                    'Banana' : {"flavor": "fruity"},
@@ -90,13 +86,23 @@ ingredient_data = {"Añejo Rum" : {"flavor": "alcohol"},
                    'Espresso' : {"flavor": "milky"},
                    'Egg Yolk' : {"flavor": "milky"}}
 
-
+ingredient_fixes = {"Añejo Rum": "Rum",
+                    "Light Rum": "Rum",
+                    "Dark Rum": "Rum",
+                    'Midori Melon Liqueur': "Melon Liqueur",
+                    "lemon": "Lemon",
+                    'Dark Creme De Cacao': "Creme De Cacao",
+                    'Half-and-half': "Half-and-Half",
+                    'Passion fruit juice': "Passion Fruit Juice",
+                    'Heavy cream': "Heavy Cream",
+                    'Chocolate Ice-cream': "Chocolate Ice-Cream"
+                    }
 def get_all_ingredients():
-    return ['Añejo Rum', 'Tia Maria', 'Vodka', 'Orange Juice', 'Lemon Juice', 'Light Rum', 'Lime', 'Sugar', 'Mint', 'Jack Daniels', 'Midori Melon Liqueur', 'Sour Mix', 'Dark Rum', 'Pineapple Juice', 'Grenadine', 'Sugar Syrup', 'Angostura Bitters', 'Rum', 'Grapefruit Juice', 'Maraschino Liqueur', 'Lime Juice', 'Brandy', 'lemon', 'Powdered Sugar', 'Cherry', 'Sweet Vermouth', 'Bourbon', 'Ice', 'Maraschino Cherry', 'Orange Peel', 'Coconut Milk', 'Pineapple', 'Tequila', 'Gin', 'Coca-Cola', 'Lemon Peel', 'Sherry', 'Orange Bitters', 'Lemonade', 'Water', 'Ginger', 'Guava juice', 'Peach Nectar', 'Brown Sugar', 'Cinnamon', 'Cloves', 'Passion fruit juice', 'Ginger Ale', 'Soda Water', 'Mango', 'Orange', 'Apple Cider', 'Allspice', 'Nutmeg', 'Light Cream', 'Egg White', 'Coffee Liqueur', 'Heavy cream', 'Chocolate Liqueur', 'Amaretto', 'Chocolate Sauce', 'Salted Chocolate', 'Scotch', 'Curacao', 'Half-and-half', 'Condensed Milk', 'Coconut Syrup', 'Chocolate Syrup', 'Kahlua', 'Baileys Irish Cream', 'Vanilla Ice-Cream', 'Oreo cookie', 'Dark Creme De Cacao', 'Coffee', 'Banana Liqueur', 'Creme De Cacao', 'Chocolate Ice-cream', 'Chocolate Milk', 'Whipped Cream', 'Banana', 'Milk', 'Vanilla', 'Chocolate', 'Espresso', 'Egg Yolk']
+    return ingredient_data.keys()
 
 def request_drink(id):
     if id == 0:
-        return {"drink": "ANYTHING", "ingredients": ["uranium"]}
+        return {"drink": "ANYTHING", "ingredients": ["Egg White"]}
 
     url = f"https://boozeapi.com/api/v1/cocktails/{id}"
 
@@ -107,7 +113,10 @@ def request_drink(id):
         result = response.json()
         ingredients = []
         for i in result["ingredients"]:
-            ingredients.append(i["name"])
+            if i["name"] in ingredient_fixes:
+                ingredients.append(ingredient_fixes[i["name"]])
+            elif i["name"] in ingredient_data:
+                ingredients.append(i["name"])
         drink_data = {"drink": result["name"],
                       "ingredients": ingredients}
 
