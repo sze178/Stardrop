@@ -230,3 +230,7 @@ kiranS -- 2025-12-19 10:40
 
 jamesS -- 2025-12-19 10:52
 - worked on settings page for username change
+
+kiranS -- 2025-12-19 11:00
+- Format sidebar data correctly
+- Plan gamestate methods
