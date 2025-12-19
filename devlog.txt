@@ -227,3 +227,6 @@ alvinS -- 2025-12-18 23:45
 
 kiranS -- 2025-12-19 10:40
 - Linked sidebar button output to python to be processed
+
+jamesS -- 2025-12-19 10:52
+- worked on settings page for username change
