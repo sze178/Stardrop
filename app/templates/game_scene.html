@@ -47,10 +47,11 @@
         <img src="../static/art/wall.png" style="background-image: url(../static/art/background.gif); animation: wahookazooie 3s infinite; position: absolute; z-index: 1; width: 100%;">
         <img src="../static/art/bartender.png" style="position: absolute; z-index: 2; width: 100%">
         <img src="../static/art/bar.png" style="animation: wahookazooie 3s infinite; position: absolute; z-index: 3; width: 100%;">
-        <img src="../static/art/barstools.png" style="position: absolute; z-index: 4; width: 100%;">
+        <img src="../static/art/santa.png" style="position: absolute; z-index: 4; width: 100%">
+        <img src="../static/art/barstools.png" style="position: absolute; z-index: 5; width: 100%;">
         <form action="/order" method="POST">
           <input type="hidden" name="seat_number" value="1">
-          <p><button class="order-button" type="submit" style="left: 50%; top: 80%;">!</button></p>
+          <p><button class="order-button" type="submit" style="left: 55%; top: 80%;">!</button></p>
         </form>
         </div>
       </div>
@@ -74,18 +75,20 @@
     </div>
 
     <div class="reveal" id="order" data-reveal data-close-on-click="false" data-close-on-esc="false" data-reveal-open="true" data-overlay="false">
-      <h1>Order</h1>
-      <form action="#">
-        <div>
-          <strong> {{ drink_name }} : </strong>
-          <br>
-          {% for item in ingredients%}
-            {{ item }}
+      <div style = "text-align: left;">
+        <h1 style = "margin-bottom: 0;">Order</h1>
+        <form action="#">
+          <div>
+            <strong> {{ drink_name }} : </strong>
             <br>
-          {% endfor %}
-        </div>
-        <button class="button" type="submit">Make Drink</button>
-      </form>
+            {% for item in ingredients%}
+              {{ item }}
+              <br>
+            {% endfor %}
+          </div>
+          <button class="button" type="submit">Make Drink</button>
+        </form>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" crossorigin="anonymous"></script>
