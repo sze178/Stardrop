@@ -234,3 +234,6 @@ jamesS -- 2025-12-19 10:52
 kiranS -- 2025-12-19 11:00
 - Format sidebar data correctly
 - Plan gamestate methods
+
+alvinS -- 2025-12-19 11:01
+- Format popup
