@@ -215,3 +215,7 @@ kiranS -- 2025-12-18 11:00
 
 jalenC -- 2025-12-18 11:03
 - changed request_position() to request_coordinates() and created request_country() in recipes.py
+
+kiranS -- 2025-12-18 8:50
+- Added "none" column to sidebar
+- Fixed radio button names
