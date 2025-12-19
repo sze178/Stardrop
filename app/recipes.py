@@ -100,7 +100,7 @@ ingredient_fixes = {"Añejo Rum": "Rum",
                     'Chocolate Ice-cream': "Chocolate Ice-Cream"
                     }
 def get_all_ingredients():
-    return ingredient_data.keys()
+    return list(ingredient_data.keys())
 
 def request_drink(id):
     if id == 0:

@@ -224,3 +224,6 @@ alvinS -- 2025-12-18 23:45
 - Added some drinks
 - Added a price for every ingredient
 - Changed a little popup formatting
+
+kiranS -- 2025-12-19 10:40
+- Linked sidebar button output to python to be processed

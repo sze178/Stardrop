@@ -107,6 +107,12 @@ def game_scene_get():
 def take_order():
     return redirect(url_for("game_scene_get", seat_number=request.form.get("seat_number")))
 
+@app.post("/make_drink")
+def make_drink():
+    for i in range(len(get_all_ingredients())):
+        print(request.form.get(str(i)))
+    return redirect(url_for("game_scene_get"))
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
