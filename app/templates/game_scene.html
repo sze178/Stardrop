@@ -65,19 +65,19 @@
           <div>M</div>
           <div>L</div>
           {% for i in range(supplies | length) %}
-              <div>{{ supplies[i] }}</div>
+              <div>{{ supplies[i] }}</div> 
               <div>{{ quantities[i] }}</div>
-              <div><input value="0" type="radio" name="{{ i }}" checked></input></div>
-              <div><input value="1" type="radio" name="{{ i }}"></input></div>
-              <div><input value="2" type="radio" name="{{ i }}"></input></div>
+              <div><input value="none" type="radio" name="{{ i }}" checked></input></div>
+              <div><input value="normal" type="radio" name="{{ i }}"></input></div>
+              <div><input value="extra" type="radio" name="{{ i }}"></input></div>
           {% endfor %}
         </div>
         </form>
       </div>
     </div>
 
-    <div style = "display: flex" class="reveal" id="order" data-reveal data-close-on-click="false" data-close-on-esc="false" data-reveal-open="true" data-overlay="false">
-      <div style = "text-align: left; flex: 33%">
+    <div class="reveal" id="order" data-reveal data-close-on-click="false" data-close-on-esc="false" data-reveal-open="true" data-overlay="false">
+      <div style = "text-align: left;">
         <h1 style = "margin-bottom: 0;">Order</h1>
           <div>
             <strong> {{ drink_name }} : </strong>
@@ -87,14 +87,7 @@
               <br>
             {% endfor %}
           </div>
-          <br>
           <button class="button" type="submit" form="make_drink">Make Drink</button>
-      </div>
-      <div style = "text-align: left; flex: 33%; vertical-align: middle">
-        <img src="../static/art/placeholder.gif" style="position: absolute;">
-      </div>
-      <div style = "flex: 33%">
-        hello
       </div>
     </div>
 
