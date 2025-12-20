@@ -109,16 +109,8 @@ def take_order():
 
 @app.post("/make_drink")
 def make_drink():
-    added_ingredients = {}
-    supplies=json.loads(select_query("SELECT supplies FROM players WHERE username=?", [session["username"]])[0]["supplies"])
-    alphabetical_supplies=sorted(list(supplies.keys()))
     for i in range(len(get_all_ingredients())):
-#        print(request.form.get(str(i)))
-        #DONT INCLUDE NONE
-        added_ingredients[alphabetical_supplies[i]] = request.form.get(str(i))
-    print(added_ingredients)        
-    #check_stock(added_ingredients)
-    #update_stock(added_ingredients, -1)
+        print(request.form.get(str(i)))
     return redirect(url_for("game_scene_get"))
 
 if __name__ == "__main__":
