@@ -263,7 +263,13 @@ kiranS -- 2025-12-21 12:15
 - Drink results now update sql for gold earned/npc opinion
 - Cleaned sql initialization up and removed extraneous columns
 
+kiranS -- 2025-12-21 17:21
+- Added a popup for restock displaying columns for ingredients, amt in stock, price, and textbox for buying
+- Passed popup data to flask restock method to update money and inventory
+- Added order_counter in sql -- after 3, the restock window appears
+
 alvinS -- 2025-12-21 17:26
 - Updated images in html and added new image files
 - Finished calculation of drink results
 - Displays results of drinks properly and processes prices of drinks
+
