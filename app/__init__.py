@@ -200,7 +200,7 @@ def make_drink():
         flash("Not enough ingredients to make drink", "error")
         return redirect(url_for("game_scene_get"))
     change_stock(session["username"], added_ingredients, -1)
-    results = calculate_results(session.get("npc"), session.get("drink"), added_ingredients)
+    results = calculate_results(session.get("npc"), session.get("drink"), added_ingredients, session.get("conversion_rate"))
     session["results"] = results
     general_query(f"UPDATE players SET {session.get('npc').lower()}_opinion = {session.get('npc').lower()}_opinion + ? WHERE username=?", [results[0], session["username"]])
     general_query("UPDATE players SET money = money + ? WHERE username=?", [results[1], session["username"]])

@@ -86,6 +86,8 @@ def npc_drink_order(name):
         return 0
 
 def calculate_results(npc, drink, contents, usd):
+    print(usd)
+    print("\n\n")
     ingredients_used = contents.keys()
     ingredients_needed = drink["ingredients"]
     accuracy = len(ingredients_needed)
@@ -129,7 +131,9 @@ def calculate_results(npc, drink, contents, usd):
         "Wicked Drink!"
     elif like >= 5:
         result = "Perfection!"
-    money = price * usd
+    result += " " + str(like)
+    print(usd["price_gram_10k"])
+    money = round(price * float(usd["price_gram_10k"])/10, 2)
     return (result, money, price)
     
 def get_price(date, item):
@@ -202,8 +206,8 @@ def request_value(timestamp):
         response = requests.get(url, headers=headers)
         response.raise_for_status()
 
-        result = response.text
-        print(result)
+        result = response.json()
+        return(result)
     except requests.exceptions.RequestException as e:
         print(e)
 

@@ -273,3 +273,6 @@ alvinS -- 2025-12-21 17:26
 - Finished calculation of drink results
 - Displays results of drinks properly and processes prices of drinks
 
+alvinS -- 2025-12-21 17:55
+- Converts to USD successfully and displays money earned
+- API query result changes to dict not text
