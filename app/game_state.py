@@ -73,7 +73,6 @@ def change_stock(username, changes, mode):
     supply = json.loads(select_query("SELECT supplies FROM players WHERE username=?", [username])[0]["supplies"])
     for ingredient in changes:
         supply[ingredient] += mode * int(changes[ingredient])
-    print(supply)
     general_query("UPDATE players SET supplies=? WHERE username=?", [json.dumps(supply), username])
 
 
@@ -115,7 +114,8 @@ def calculate_results(npc, drink, contents):
     #     elif npc_data["Dislikes"] == ingredient_info["flavor"]:
     #         like -= 1
     #     price += ingredient_info["price"]
-    return (like, price)
+    # return (like, price)
+    return(5, 5)
     
 def request_coordinates(timestamp):
     url = f"https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={timestamp}"

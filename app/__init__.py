@@ -131,6 +131,7 @@ def game_scene_get():
         quantities.append(supplies[item])
     if seat_number and session.get("drink") is None:
         npc = npc_at_seat[int(seat_number) - 1]
+        print(npc)
         session["npc"]=npc
         npc_data = get_npc_drink_preferences(npc)
         for i in range(3):
@@ -183,7 +184,11 @@ def make_drink():
         flash("Not enough ingredients to make drink", "error")
         return redirect(url_for("game_scene_get"))
     change_stock(session["username"], added_ingredients, -1)
-    session["results"] = calculate_results(session.get("npc"), session.get("drink"), added_ingredients)
+    results = calculate_results(session.get("npc"), session.get("drink"), added_ingredients)
+    session["results"] = results
+    general_query(f"UPDATE players SET {session.get('npc').lower()}_opinion = {session.get('npc').lower()}_opinion + ? WHERE username=?", [results[0], session["username"]])
+    general_query(f"UPDATE players SET money = money + ? WHERE username=?", [results[1], session["username"]])
+    print(select_query("SELECT * FROM players WHERE username=?", [session["username"]]))
     session.pop("drink")
     session.pop("npc")
     return redirect(url_for("game_scene_get"))
