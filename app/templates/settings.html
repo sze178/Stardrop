@@ -16,23 +16,30 @@
     </h1>
   </div>
 
+  <form action="/toggle_alcohol" method="POST">
+    {% if alcohol_on %}
+      <p>Alcohol Mode is currently on</p>
+    {% else %}
+      <p>Alcohol Mode is currently off</p>
+    {% endif %}
+    <button type="submit" class="button" title="Alcohol off">Toggle Alcohol Mode</button>
+  </form>
+
   <div class = "credentials_username">
    <p>If you would like to change your username, please enter it below to request it. If no other user has the same username, you will be granted the new username.</p>
-    <form action="{{ url_for('settings_get') }}" method="post">
-     <input type="hidden" name="form_type" value="username">
+    <form action="/change_username" method="POST">
       <input type="text" name="username" placeholder="New Username">
       <br>
-      <button type="submit" title="Change Username">Change Username</button>
+      <button type="submit" class="button" title="Change Username">Change Username</button>
 
     </form>
   </div>
 
-
+  <br>
 
   <div class = "credentials_pswd">
-   <p>To change your password, please enter your current password to confirm your identity. Then please enter your new secure password twice. If you do not enter the same new password twice, the password change will be rejected.</p>
-    <form action="{{ url_for('settings_get') }}" method="post">
-     <input type="hidden" name="form_type" value="password">
+   <p>To change your password, please enter your current password. Then please enter your new password twice. If you do not enter the same new password twice, the password change will be rejected.</p>
+    <form action="/change_password" method="POST">
       <input type="password" name="old_password" placeholder="Old Password" title="CASE SENSITIVE!">
       <br>
       <input type="password" name="new_password" placeholder="New Password" title="CASE SENSITIVE!">
@@ -40,12 +47,12 @@
       <input type="password" name="reconfirm_password" placeholder="Confirm Password" title="CASE SENSITIVE!">
       <br>
 
-      <button type="submit" title="Change Password">Change Password</button>
+      <button type="submit" class="button" title="Change Password">Change Password</button>
 
     </form>
   </div>
     <p>
-      Return to <a href= "{{ url_for('index_get') }}"> homepage</a><br>
+      <a href= "{{ url_for('index_get') }}">Return to Homepage</a><br>
     </p>
   </div>
 

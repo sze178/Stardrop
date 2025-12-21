@@ -71,7 +71,43 @@ def logout_get():
 
 @app.get('/settings')
 def settings_get():
-    return render_template("settings.html")
+    alcohol_on = select_query("SELECT alcohol_on FROM players WHERE username=?", [session["username"]])[0]["alcohol_on"]
+    return render_template("settings.html", alcohol_on=alcohol_on)
+
+@app.post("/toggle_alcohol")
+def toggle_alcohol():
+    current_setting=select_query("SELECT alcohol_on FROM players WHERE username=?", [session["username"]])[0]["alcohol_on"]
+    general_query("UPDATE players SET alcohol_on=? WHERE username=?", [not current_setting, session["username"]])
+    flash("Your alcohol preference has been changed", "success")
+    return redirect(url_for("settings_get"))
+
+@app.post("/change_username")
+def change_username():
+    new_username = request.form.get("username")
+    for user in select_query("SELECT username FROM players"):
+        if user["username"] == new_username:
+            flash("This username is already taken", "error")
+            return redirect(url_for("settings_get"))
+    
+    general_query("UPDATE players SET username=? WHERE username=?", [new_username, session["username"]])
+    session["username"]=new_username
+    flash(f"Your username has successfully been changed to {new_username}", "success")
+    return redirect(url_for("settings_get"))
+
+@app.post("/change_password")
+def change_password():
+    if request.form.get("old_password") != select_query("SELECT password FROM players WHERE username=?", [session["username"]])[0]["password"]:
+        flash("Invalid current password entered", "error")
+        return redirect(url_for("settings_get"))
+    
+    new_password = request.form.get("new_password")
+    if new_password != request.form.get("reconfirm_password"):
+        flash("Passwords do not match", "error")
+        return redirect(url_for("settings_get"))
+    
+    general_query("UPDATE players SET password=? WHERE username=?", [new_password, session["username"]])
+    flash("Your password has successfully been changed", "success")
+    return redirect(url_for("settings_get"))
 
 @app.get('/game_scene')
 def game_scene_get():
@@ -80,7 +116,7 @@ def game_scene_get():
     coords[0] = round(coords[0], 4)
     coords[1] = round(coords[1], 4)
     if "username" not in session.keys():
-        flash("Please log in or register first.", "error")
+        flash("Please log in or register first", "error")
         return redirect(url_for("index_get"))
     seat_number = request.args.get("seat_number")
     drink_name=""
@@ -96,6 +132,7 @@ def game_scene_get():
     npc_data = {}
     for item in alphabetical_supplies:
         quantities.append(supplies[item])
+
     if seat_number:
         npc = npc_at_seat[int(seat_number) - 1]
         session["npc"]=npc
@@ -111,6 +148,7 @@ def game_scene_get():
     results=session.get("results", False)
     if results:
         session.pop("results")
+
     return render_template(
         "game_scene.html", 
         country = coords,

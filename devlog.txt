@@ -251,5 +251,7 @@ alvinS -- 2025-12-20 23:34
 - Commented out country code query as the data isn't worth the query time
 - Moved API code to game_state to clean recipes
 
-
+kiranS -- 2025-12-21 00:40
+- Added flask functionality to user/password change mechanism
+- Added functional button to toggle alcohol
 
