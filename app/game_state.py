@@ -7,7 +7,7 @@ from db import *
 import random, json
 
 alcoholOn = True
-npc_at_seat = ["Santa"]
+npc_at_seat = ["Santa", "Pirate", "Cowboy"]
 
 #drink selections / list of ids from api to randomly choose from
 #a if alcohol b if not
@@ -32,24 +32,17 @@ npcDrinkPreferences = {"Santa": {"Flavor": "sweet",
                                  "alcohol" : a2,
                                  "no_alcohol": b2,
                                  "heavy_drinker": False},
-                       "Cowboy": {"Flavor": "fruity",
+                       "Cowboy": {"Flavor": "fruit",
                                   "Likes": "syrup",
                                    "Dislikes": "cream",
-                                   "Favorite": 225156,
+                                   "Favorite": "Milk",
                                    "alcohol" : a1,
                                    "no_alcohol": b1,
                                    "heavy_drinker": True},
-                       "Agent J": {"Flavor": "milky",
-                                   "Likes": "chocolate",
-                                   "Dislikes": "soda",
-                                   "Favorite": 0,
-                                   "alcohol" : a2,
-                                   "no_alcohol": b2,
-                                   "heavy_drinker": False},
                        "Pirate" : {"Flavor": "sour",
                                    "Likes": "fruit",
                                    "Dislikes": "coffee",
-                                   "Favorite": 0,
+                                   "Favorite": "Coconut Milk",
                                    "alcohol" : a1,
                                    "no_alcohol": b1,
                                    "heavy_drinker": True}}
@@ -92,30 +85,52 @@ def npc_drink_order(name):
     else:
         return 0
 
-def calculate_results(npc, drink, contents):
-    pass
+def calculate_results(npc, drink, contents, usd):
     ingredients_used = contents.keys()
     ingredients_needed = drink["ingredients"]
     accuracy = len(ingredients_needed)
     npc_data = npcDrinkPreferences[npc]
-    # ingredient_info = ingredient_data[ingredient]
     like = 5
     price = 0
-    # for ingredient in ingredients_needed:
-    #     if not ingredient in ingredients_used:
-    #         accuracy -= 1
-    # if accuracy < len(ingredients_needed)/2:
-    #     like -= 1
-    # for ingredient in ingredients_used:
-    #     if npc_data["Likes"] in ingredient or npc_data["Likes"] == ingredient_info["flavor"]:
-    #         like += 1
-    #     if npc_data["Favorite"] == ingredient:
-    #         like += 2
-    #     elif npc_data["Dislikes"] == ingredient_info["flavor"]:
-    #         like -= 1
-    #     price += ingredient_info["price"]
-    # return (like, price)
-    return(5, 5)
+    if len(ingredients_used) == 0:
+        return (-5, 0)
+    if (drink["drink"] != "Surprise Me!"):
+        for ingredient in ingredients_needed:
+            if not ingredient in ingredients_used:
+                accuracy -= 1
+        if accuracy < len(ingredients_needed)/2:
+            if accuracy < len(ingredients_needed)/4:
+                like = min(0, like - 2)
+            like = min(0, like - 1)
+    for ingredient in ingredients_used:
+        amount = contents[ingredient]
+        ingredient_info = ingredient_data[ingredient]
+        if ingredient_info["flavor"] == "alcohol":
+            if npc_data["heavy_drinker"]:
+                like += amount - 1
+            else:
+                if contents[ingredient] > 1 or not ingredient in ingredients_needed:
+                    like = min(0, like - 1)
+        else:
+            if npc_data["Likes"].lower() in ingredient or npc_data["Likes"].lower() == ingredient_info["flavor"].lower() or npc_data["Flavor"].lower() == ingredient_info["flavor"]:
+                like += amount
+            if npc_data["Favorite"].lower() == ingredient:
+                like += 2 * amount
+            elif npc_data["Dislikes"].lower() == ingredient_info["flavor"]:
+                like = min(0, like - 1)
+        price += ingredient_info["price"] * amount
+    like -= 5
+    result = "Good Drink!"
+    if like == -5:
+        result = "Terrible!"
+    elif like < 0:
+        result = "Could Be Better..."
+    elif like > 0:
+        "Wicked Drink!"
+    elif like >= 5:
+        result = "Perfection!"
+    money = price * usd
+    return (result, money, price)
     
 def request_coordinates(timestamp):
     url = f"https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={timestamp}"

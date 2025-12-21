@@ -177,8 +177,9 @@ def make_drink():
     supplies=json.loads(select_query("SELECT supplies FROM players WHERE username=?", [session["username"]])[0]["supplies"])
     alphabetical_supplies=sorted(list(supplies.keys()))
     for i in range(len(get_all_ingredients())):
-        if (request.form.get(str(i)) != "none"):
-            added_ingredients[alphabetical_supplies[i]] = request.form.get(str(i))
+        amount = request.form.get(str(i))
+        if (amount != "0"):
+            added_ingredients[alphabetical_supplies[i]] = int(amount)
 
     if not check_stock(session["username"], added_ingredients):
         flash("Not enough ingredients to make drink", "error")
@@ -188,7 +189,7 @@ def make_drink():
     session["results"] = results
     general_query(f"UPDATE players SET {session.get('npc').lower()}_opinion = {session.get('npc').lower()}_opinion + ? WHERE username=?", [results[0], session["username"]])
     general_query(f"UPDATE players SET money = money + ? WHERE username=?", [results[1], session["username"]])
-    print(select_query("SELECT * FROM players WHERE username=?", [session["username"]]))
+    #print(select_query("SELECT * FROM players WHERE username=?", [session["username"]]))
     session.pop("drink")
     session.pop("npc")
     return redirect(url_for("game_scene_get"))
