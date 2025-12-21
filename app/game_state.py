@@ -9,9 +9,6 @@ import random, json
 alcoholOn = True
 npc_at_seat = ["Santa"]
 
-last_drink_order = {}
-last_npc = ""
-
 #drink selections / list of ids from api to randomly choose from
 #a if alcohol b if not
 #1 fruity/sour
@@ -86,28 +83,28 @@ def npc_drink_order(name):
     else:
         return 0
 
-def calculate_results(made):
+def calculate_results(npc, drink, contents):
     pass
-    ingredients_used = made.keys()
-    ingredients_needed = last_drink_order["ingredients"]
+    ingredients_used = contents.keys()
+    ingredients_needed = drink["ingredients"]
     accuracy = len(ingredients_needed)
-    npc_data = npcDrinkPreferences[last_npc]
-    ingredient_info = ingredient_data[ingredient]
+    npc_data = npcDrinkPreferences[npc]
+    # ingredient_info = ingredient_data[ingredient]
     like = 5
     price = 0
-    for ingredient in ingredients_needed:
-        if not ingredient in ingredients_used:
-            accuracy -= 1
-    if accuracy < len(ingredients_needed)/2:
-        like -= 1
-    for ingredient in ingredients_used:
-        if npc_data["Likes"] in ingredient or npc_data["Likes"] == ingredient_info["flavor"]:
-            like += 1
-        if npc_data["Favorite"] == ingredient:
-            like += 2
-        elif npc_data["Dislikes"] == ingredient_info["flavor"]:
-            like -= 1
-        price += ingredient_info["price"]
+    # for ingredient in ingredients_needed:
+    #     if not ingredient in ingredients_used:
+    #         accuracy -= 1
+    # if accuracy < len(ingredients_needed)/2:
+    #     like -= 1
+    # for ingredient in ingredients_used:
+    #     if npc_data["Likes"] in ingredient or npc_data["Likes"] == ingredient_info["flavor"]:
+    #         like += 1
+    #     if npc_data["Favorite"] == ingredient:
+    #         like += 2
+    #     elif npc_data["Dislikes"] == ingredient_info["flavor"]:
+    #         like -= 1
+    #     price += ingredient_info["price"]
     return (like, price)
     
 def request_coordinates(timestamp):

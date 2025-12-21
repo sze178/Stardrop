@@ -98,19 +98,30 @@ def game_scene_get():
         quantities.append(supplies[item])
     if seat_number:
         npc = npc_at_seat[int(seat_number) - 1]
+        session["npc"]=npc
         npc_data = get_npc_drink_preferences(npc)
+        for i in range(3):
+            npc_data[list(npc_data)[i]]=list(npc_data.values())[i].capitalize()
         drink_id = npc_drink_order(npc)
         drink = request_drink(drink_id)
+        session["drink"] = drink
         set_last_order(drink, npc)
         ingredients = drink["ingredients"] 
         drink_name = drink["drink"]
-    return render_template("game_scene.html", country = coords, date = date, order=(seat_number is not None), drink_name=drink_name, ingredients=ingredients, supplies=alphabetical_supplies, quantities=quantities, npc=npc,npc_data=npc_data)
-
-
-# @app.post("/game_scene")
-# def game_scene_post():
-#     print("abc")
-#     return redirect(url_for("game_scene_get"))
+    results=session.get("results", False)
+    if results:
+        session.pop("results")
+    return render_template(
+        "game_scene.html", 
+        order=(seat_number is not None), 
+        drink_name=drink_name, 
+        ingredients=ingredients, 
+        supplies=alphabetical_supplies, 
+        quantities=quantities, 
+        npc=npc,
+        npc_data=npc_data,
+        results=results
+    )
 
 @app.post("/order")
 def take_order():
@@ -121,14 +132,15 @@ def make_drink():
     added_ingredients = {}
     supplies=json.loads(select_query("SELECT supplies FROM players WHERE username=?", [session["username"]])[0]["supplies"])
     alphabetical_supplies=sorted(list(supplies.keys()))
+    # print(len(alphabetical_supplies))
+    # print(len(get_all_ingredients()))
     for i in range(len(get_all_ingredients())):
-#        print(request.form.get(str(i)))
-        #DONT INCLUDE NONE
+        print(request.form.get(str(i)))
         if (request.form.get(str(i)) != "none"):
             added_ingredients[alphabetical_supplies[i]] = request.form.get(str(i))
-    print(calculate_results(added_ingredients))
-    #check_stock(added_ingredients)
-    #update_stock(added_ingredients, -1)
+    session["results"] = calculate_results(session.get("npc"), session.get("drink"), added_ingredients)
+    # check_stock(added_ingredients)
+    # update_stock(added_ingredients, -1)
     return redirect(url_for("game_scene_get"))
 
 if __name__ == "__main__":
