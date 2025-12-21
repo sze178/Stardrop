@@ -65,7 +65,7 @@ def register_post():
 
 @app.get('/logout')
 def logout_get():
-    session.pop('username', None)
+    session.clear()
     flash("You are now logged out.", "success")
     return redirect(url_for("index_get"))
 
@@ -121,39 +121,42 @@ def game_scene_get():
     seat_number = request.args.get("seat_number")
     drink_name=""
     ingredients = []
-    # print(select_query("SELECT supplies FROM players WHERE username=?", [session["username"]]))
     supplies=json.loads(select_query("SELECT supplies FROM players WHERE username=?", [session["username"]])[0]["supplies"])
-#    print(supplies.keys())
-#    print(list(supplies.keys()))
-#    print(list(supplies.keys()))
     alphabetical_supplies=sorted(list(supplies.keys()))
     quantities=[]
     npc = ""
     npc_data = {}
+    order=False
     for item in alphabetical_supplies:
         quantities.append(supplies[item])
-
-    if seat_number:
+    if seat_number and session.get("drink") is None:
         npc = npc_at_seat[int(seat_number) - 1]
         session["npc"]=npc
         npc_data = get_npc_drink_preferences(npc)
         for i in range(3):
-            npc_data[list(npc_data)[i]]=list(npc_data.values())[i].capitalize()
+            npc_data[list(npc_data)[i]] = list(npc_data.values())[i].capitalize()
         drink_id = npc_drink_order(npc)
         drink = request_drink(drink_id)
         session["drink"] = drink
-        set_last_order(drink, npc)
         ingredients = drink["ingredients"] 
         drink_name = drink["drink"]
+        order=True
+    elif session.get("drink") is not None:
+        npc = session.get("npc")
+        npc_data = get_npc_drink_preferences(npc)
+        for i in range(3):
+            npc_data[list(npc_data)[i]] = list(npc_data.values())[i].capitalize()
+        drink_name = session["drink"]["drink"]
+        ingredients = session["drink"]["ingredients"]
+        order=True
     results=session.get("results", False)
     if results:
         session.pop("results")
-
     return render_template(
         "game_scene.html", 
         country = coords,
         date = date, 
-        order=(seat_number is not None), 
+        order=order, 
         drink_name=drink_name, 
         ingredients=ingredients, 
         supplies=alphabetical_supplies, 
@@ -172,15 +175,17 @@ def make_drink():
     added_ingredients = {}
     supplies=json.loads(select_query("SELECT supplies FROM players WHERE username=?", [session["username"]])[0]["supplies"])
     alphabetical_supplies=sorted(list(supplies.keys()))
-    # print(len(alphabetical_supplies))
-    # print(len(get_all_ingredients()))
     for i in range(len(get_all_ingredients())):
-        # print(request.form.get(str(i)))
         if (request.form.get(str(i)) != "none"):
             added_ingredients[alphabetical_supplies[i]] = request.form.get(str(i))
+
+    if not check_stock(session["username"], added_ingredients):
+        flash("Not enough ingredients to make drink", "error")
+        return redirect(url_for("game_scene_get"))
+    change_stock(session["username"], added_ingredients, -1)
     session["results"] = calculate_results(session.get("npc"), session.get("drink"), added_ingredients)
-    # check_stock(added_ingredients)
-    # update_stock(added_ingredients, -1)
+    session.pop("drink")
+    session.pop("npc")
     return redirect(url_for("game_scene_get"))
 
 if __name__ == "__main__":

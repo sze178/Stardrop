@@ -57,18 +57,28 @@ npcDrinkPreferences = {"Santa": {"Flavor": "sweet",
 def initialize_supplies(username):
     supply_dict={}
     for item in get_all_ingredients():
-        supply_dict[item] = 0
+        supply_dict[item] = 5
     # print(json.dumps(supply_dict))
     general_query("UPDATE players SET supplies=? WHERE username=?", [json.dumps(supply_dict), username])
     # print(select_query("SELECT * FROM players WHERE username=?", [username]))
 
+def check_stock(username, added_ingredients):
+    supply = json.loads(select_query("SELECT supplies FROM players WHERE username=?", [username])[0]["supplies"])
+    for ingredient in added_ingredients:
+        if supply[ingredient] < int(added_ingredients[ingredient]):
+            return False
+    return True
+
+def change_stock(username, changes, mode):
+    supply = json.loads(select_query("SELECT supplies FROM players WHERE username=?", [username])[0]["supplies"])
+    for ingredient in changes:
+        supply[ingredient] += mode * int(changes[ingredient])
+    print(supply)
+    general_query("UPDATE players SET supplies=? WHERE username=?", [json.dumps(supply), username])
+
+
 def get_npc_drink_preferences(name):
     return npcDrinkPreferences[name]
-
-def set_last_order(drink, npc):
-    last_drink_order = drink
-    last_npc = npc
-    print(last_drink_order)
 
 def npc_drink_order(name):
     drinkSet = []

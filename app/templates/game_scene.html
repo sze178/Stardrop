@@ -47,6 +47,21 @@
         </div>
       </div>
     </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+          {% for category, message in messages %}
+          <div data-closable class="alert-box callout {{ category }}">
+            <i class="fa fa-ban"></i> {{ message }}
+              <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+              <span aria-hidden="true">&CircleTimes;</span>
+            </button>
+          </div>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
     <div id="content" style = "display:flex; text-align: left;">
       <div style="flex: 80%; image-rendering: pixelated; position: relative">
         <div style="position:relative; width: 100%; padding-bottom: 56.25%">
@@ -64,7 +79,7 @@
       <div style="flex: 20%; color: white; height: 85vh; overflow: auto">
         <h3>Supplies</h3>
         <form action="/make_drink" method="POST" id="make_drink">
-        <div style="display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr; width: 100%;">
+        <div style="display: grid; grid-template-columns: 3fr 1fr 1fr 1fr 1fr; width: 100%;">
           <div>Ingredient</div>
           <div>Qty</div>
           <div>None</div>
@@ -73,9 +88,9 @@
           {% for i in range(supplies | length) %}
               <div>{{ supplies[i] }}</div> 
               <div>{{ quantities[i] }}</div>
-              <div><input value="none" type="radio" name="{{ i }}" checked></input></div>
-              <div><input value="normal" type="radio" name="{{ i }}"></input></div>
-              <div><input value="extra" type="radio" name="{{ i }}"></input></div>
+              <div><input value="0" type="radio" name="{{ i }}" checked></input></div>
+              <div><input value="1" type="radio" name="{{ i }}"></input></div>
+              <div><input value="2" type="radio" name="{{ i }}"></input></div>
           {% endfor %}
         </div>
         </form>
