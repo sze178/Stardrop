@@ -88,14 +88,19 @@ def game_scene_get():
 #    print(list(supplies.keys()))
     alphabetical_supplies=sorted(list(supplies.keys()))
     quantities=[]
+    npc = ""
+    npc_data = {}
     for item in alphabetical_supplies:
         quantities.append(supplies[item])
     if seat_number:
-        drink_id = npc_drink_order(npc_at_seat[int(seat_number) - 1])
-        drink_dict = request_drink(drink_id)
-        ingredients = drink_dict["ingredients"] 
-        drink_name = drink_dict["drink"]
-    return render_template("game_scene.html", order=(seat_number is not None), drink_name=drink_name, ingredients=ingredients, supplies=alphabetical_supplies, quantities=quantities)
+        npc = npc_at_seat[int(seat_number) - 1]
+        npc_data = get_npc_drink_preferences(npc)
+        drink_id = npc_drink_order(npc)
+        drink = request_drink(drink_id)
+        set_last_order(drink, npc)
+        ingredients = drink["ingredients"] 
+        drink_name = drink["drink"]
+    return render_template("game_scene.html", order=(seat_number is not None), drink_name=drink_name, ingredients=ingredients, supplies=alphabetical_supplies, quantities=quantities, npc=npc,npc_data=npc_data)
 
 
 # @app.post("/game_scene")
@@ -115,8 +120,9 @@ def make_drink():
     for i in range(len(get_all_ingredients())):
 #        print(request.form.get(str(i)))
         #DONT INCLUDE NONE
-        added_ingredients[alphabetical_supplies[i]] = request.form.get(str(i))
-    print(added_ingredients)        
+        if (request.form.get(str(i)) != "none"):
+            added_ingredients[alphabetical_supplies[i]] = request.form.get(str(i))
+    print(calculate_results(added_ingredients))
     #check_stock(added_ingredients)
     #update_stock(added_ingredients, -1)
     return redirect(url_for("game_scene_get"))

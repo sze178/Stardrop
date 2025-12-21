@@ -7,7 +7,10 @@ from db import *
 import random, json
 
 alcoholOn = True
-npc_at_seat = ["santa"]
+npc_at_seat = ["Santa"]
+
+last_drink_order = {}
+last_npc = ""
 
 #drink selections / list of ids from api to randomly choose from
 #a if alcohol b if not
@@ -25,31 +28,31 @@ b2 = [42501, 264361, 434283, 577385, 934558]
 #       drink selection alcohol (hard-coded),
 #       drink selection no alcohol (hard-coded)
 #       heavy alcohol if alcohol true
-npcDrinkPreferences = {"santa": {"flavor": "sweet",
-                                 "likes": "milk",
-                                 "dislikes": "fruit",
-                                 "favorite": "Mint",
+npcDrinkPreferences = {"Santa": {"Flavor": "sweet",
+                                 "Likes": "milk",
+                                 "Dislikes": "fruit",
+                                 "Favorite": "Mint",
                                  "alcohol" : a2,
                                  "no_alcohol": b2,
                                  "heavy_drinker": False},
-                       "cowboy": {"flavor": "fruity",
-                                  "likes": "syrup",
-                                   "dislikes": "cream",
-                                   "favorite": 225156,
+                       "Cowboy": {"Flavor": "fruity",
+                                  "Likes": "syrup",
+                                   "Dislikes": "cream",
+                                   "Favorite": 225156,
                                    "alcohol" : a1,
                                    "no_alcohol": b1,
                                    "heavy_drinker": True},
-                       "agent j": {"flavor": "milky",
-                                   "likes": "chocolate",
-                                   "dislikes": "soda",
-                                   "favorite": 0,
+                       "Agent J": {"Flavor": "milky",
+                                   "Likes": "chocolate",
+                                   "Dislikes": "soda",
+                                   "Favorite": 0,
                                    "alcohol" : a2,
                                    "no_alcohol": b2,
                                    "heavy_drinker": False},
-                       "pirate" : {"flavor": "sour",
-                                   "likes": "fruit",
-                                   "dislikes": "coffee",
-                                   "favorite": 0,
+                       "Pirate" : {"Flavor": "sour",
+                                   "Likes": "fruit",
+                                   "Dislikes": "coffee",
+                                   "Favorite": 0,
                                    "alcohol" : a1,
                                    "no_alcohol": b1,
                                    "heavy_drinker": True}}
@@ -65,6 +68,11 @@ def initialize_supplies(username):
 def get_npc_drink_preferences(name):
     return npcDrinkPreferences[name]
 
+def set_last_order(drink, npc):
+    last_drink_order = drink
+    last_npc = npc
+    print(last_drink_order)
+
 def npc_drink_order(name):
     drinkSet = []
     if alcoholOn:
@@ -77,3 +85,31 @@ def npc_drink_order(name):
         return drinkSet[random.randint(0, len(drinkSet) - 1)]
     else:
         return 0
+
+def calculate_results(made):
+    pass
+    ingredients_used = made.keys()
+    ingredients_needed = last_drink_order["ingredients"]
+    accuracy = len(ingredients_needed)
+    npc_data = npcDrinkPreferences[last_npc]
+    ingredient_info = ingredient_data[ingredient]
+    like = 5
+    price = 0
+    for ingredient in ingredients_needed:
+        if not ingredient in ingredients_used:
+            accuracy -= 1
+    if accuracy < len(ingredients_needed)/2:
+        like -= 1
+    for ingredient in ingredients_used:
+        if npc_data["Likes"] in ingredient or npc_data["Likes"] == ingredient_info["flavor"]:
+            like += 1
+        if npc_data["Favorite"] == ingredient:
+            like += 2
+        elif npc_data["Dislikes"] == ingredient_info["flavor"]:
+            like -= 1
+        price += ingredient_info["price"]
+    return (like, price)
+    
+
+        
+    
