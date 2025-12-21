@@ -10,7 +10,8 @@ db = sqlite3.connect(DB_FILE)
 c = db.cursor()
 
 c.executescript("""
-CREATE TABLE IF NOT EXISTS players (
+DROP TABLE IF EXISTS players;
+CREATE TABLE players (
     username TEXT PK,
     name TEXT,
 
@@ -28,7 +29,8 @@ CREATE TABLE IF NOT EXISTS players (
 
 
 c.executescript("""
-CREATE TABLE IF NOT EXISTS ingredients (
+DROP TABLE IF EXISTS ingredients;
+CREATE TABLE ingredients (
     name TEXT PK,
     color TEXT,
     price REAL
