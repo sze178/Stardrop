@@ -240,3 +240,8 @@ alvinS -- 2025-12-20 20:50
 - Fixed merge errors that crashed website
 - Added commented code for drink result calculation
 
+alvinS -- 2025-12-20 23:34
+- Added API data to the header bar
+- Commented out country code query as the data isn't worth the query time
+- Moved API code to game_state to clean recipes
+

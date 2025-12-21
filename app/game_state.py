@@ -110,6 +110,74 @@ def calculate_results(made):
         price += ingredient_info["price"]
     return (like, price)
     
+def request_coordinates(timestamp):
+    url = f"https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={timestamp}"
+    # timestamp is in unix/epoch time
 
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+
+        result = response.json()[0]
+
+        coordinates = [result["latitude"], result["longitude"]]
+
+        return coordinates
+    except requests.exceptions.RequestException as e:
+        print(e)
         
-    
+# def request_country(coordinates):
+#     url = f"https://api.wheretheiss.at/v1/coordinates/{coordinates[0]},{coordinates[1]}"
+#     # use coordinates provided from request_coordinates()
+
+#     try:
+#         response = requests.get(url)
+#         response.raise_for_status()
+
+#         result = response.json()
+
+#         country = result["country_code"]
+#         if country == "??":
+#             country = "International Waters"
+#         # default if ISS is above an ocean / international waters
+
+#         return country
+#     except requests.exceptions.RequestException as e:
+#         print(e)
+
+
+def request_value(timestamp):
+    url = f"https://www.goldapi.io/api/XAU/USD/{timestamp}"
+    # timestamp is in YYYYMMDD
+
+    api_key = ""
+
+    '''
+    try:
+        with open("keys/key_GoldAPI.txt", "r") as f:
+            api_key = f.read().strip()
+            print(f.read().strip())
+    except FileNotFoundError as e:
+        print(e)
+    '''
+
+    api_key = "goldapi-citmsmixc4q0y-io" #read key_GoldAPI.txt later
+    print(api_key)
+    headers = {
+        "x-access-token": api_key,
+        "Content-Type": "application/json"
+    }
+
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+
+        result = response.text
+        print(result)
+    except requests.exceptions.RequestException as e:
+        print(e)
+
+def date_to_timestamp(date):
+    temp = date.replace("/", "")
+    temp = temp[-4:] + temp[:2] + temp[2:4]
+    return int(temp)

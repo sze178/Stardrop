@@ -75,6 +75,10 @@ def settings_get():
 
 @app.get('/game_scene')
 def game_scene_get():
+    date = "11/23/2023"
+    coords = request_coordinates(date_to_timestamp(date))
+    coords[0] = round(coords[0], 4)
+    coords[1] = round(coords[1], 4)
     if "username" not in session.keys():
         flash("Please log in or register first.", "error")
         return redirect(url_for("index_get"))
@@ -100,7 +104,7 @@ def game_scene_get():
         set_last_order(drink, npc)
         ingredients = drink["ingredients"] 
         drink_name = drink["drink"]
-    return render_template("game_scene.html", order=(seat_number is not None), drink_name=drink_name, ingredients=ingredients, supplies=alphabetical_supplies, quantities=quantities, npc=npc,npc_data=npc_data)
+    return render_template("game_scene.html", country = coords, date = date, order=(seat_number is not None), drink_name=drink_name, ingredients=ingredients, supplies=alphabetical_supplies, quantities=quantities, npc=npc,npc_data=npc_data)
 
 
 # @app.post("/game_scene")

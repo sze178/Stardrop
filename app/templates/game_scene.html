@@ -25,8 +25,14 @@
   </head>
   <body style = "background-color: black; height: 100%; text-align: center;">
     <nav class="top-bar topbar-responsive">
-      <div class="top-bar-title">
+      <div class="top-bar-title" >
         <a class="topbar-responsive-logo megrim-regular" href="{{url_for('index_get')}}"><strong>S.T.A.R.D.R.O.P</strong></a>
+      </div>
+      <div class="top-bar-title">
+        <h1 class="topbar-responsive-logo megrim-regular" style ="font-size: 20px;"><strong>Currently Above: {{ country }}</strong></h1>
+      </div>
+      <div class="top-bar-title">
+        <h1 class="topbar-responsive-logo megrim-regular" style ="font-size: 20px;">{{ date }}</strong></h1>
       </div>
       <div id="topbar-responsive" class="topbar-responsive-links">
         <div class="top-bar-right">
