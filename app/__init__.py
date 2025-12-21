@@ -113,6 +113,8 @@ def game_scene_get():
         session.pop("results")
     return render_template(
         "game_scene.html", 
+        country = coords,
+        date = date, 
         order=(seat_number is not None), 
         drink_name=drink_name, 
         ingredients=ingredients, 
@@ -135,7 +137,7 @@ def make_drink():
     # print(len(alphabetical_supplies))
     # print(len(get_all_ingredients()))
     for i in range(len(get_all_ingredients())):
-        print(request.form.get(str(i)))
+        # print(request.form.get(str(i)))
         if (request.form.get(str(i)) != "none"):
             added_ingredients[alphabetical_supplies[i]] = request.form.get(str(i))
     session["results"] = calculate_results(session.get("npc"), session.get("drink"), added_ingredients)
