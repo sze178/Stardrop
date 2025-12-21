@@ -111,7 +111,9 @@ def change_password():
 
 @app.get('/game_scene')
 def game_scene_get():
-    date = "11/23/2023"
+    date = "11/23/2023" 
+    session["date"] = date
+    session["conversion_rate"] = request_value(date_to_timestamp(date))
     coords = request_coordinates(date_to_timestamp(date))
     coords[0] = round(coords[0], 4)
     coords[1] = round(coords[1], 4)
@@ -126,10 +128,11 @@ def game_scene_get():
     quantities=[]
     npc = ""
     npc_data = {}
+    money=select_query("SELECT money FROM players WHERE username=?", [session["username"]])[0]["money"]
     order=False
-    for item in alphabetical_supplies:
+    for item in alphabetical_supplies: #builds quantity list for sidebar
         quantities.append(supplies[item])
-    if seat_number and session.get("drink") is None:
+    if seat_number and session.get("drink") is None: #take order
         npc = npc_at_seat[int(seat_number) - 1]
         print(npc)
         session["npc"]=npc
@@ -142,7 +145,7 @@ def game_scene_get():
         ingredients = drink["ingredients"] 
         drink_name = drink["drink"]
         order=True
-    elif session.get("drink") is not None:
+    elif session.get("drink") is not None: #reloading order after error
         npc = session.get("npc")
         npc_data = get_npc_drink_preferences(npc)
         for i in range(3):
@@ -153,6 +156,15 @@ def game_scene_get():
     results=session.get("results", False)
     if results:
         session.pop("results")
+    restock=False
+    price=[]
+    qty_available=[]
+    if select_query("SELECT order_counter FROM players WHERE username=?", [session["username"]])[0]["order_counter"] >= 3:
+        restock=True
+        for item in alphabetical_supplies:
+            price.append(get_price(date, item))
+            qty_available.append(get_qty())
+
     return render_template(
         "game_scene.html", 
         country = coords,
@@ -164,7 +176,11 @@ def game_scene_get():
         quantities=quantities, 
         npc=npc,
         npc_data=npc_data,
-        results=results
+        results=results,
+        price=price,
+        qty_available=qty_available,
+        money=money,
+        restock=restock
     )
 
 @app.post("/order")
@@ -177,8 +193,7 @@ def make_drink():
     supplies=json.loads(select_query("SELECT supplies FROM players WHERE username=?", [session["username"]])[0]["supplies"])
     alphabetical_supplies=sorted(list(supplies.keys()))
     for i in range(len(get_all_ingredients())):
-        if (request.form.get(str(i)) != "none"):
-            added_ingredients[alphabetical_supplies[i]] = request.form.get(str(i))
+        added_ingredients[alphabetical_supplies[i]] = request.form.get(str(i))
 
     if not check_stock(session["username"], added_ingredients):
         flash("Not enough ingredients to make drink", "error")
@@ -187,10 +202,28 @@ def make_drink():
     results = calculate_results(session.get("npc"), session.get("drink"), added_ingredients)
     session["results"] = results
     general_query(f"UPDATE players SET {session.get('npc').lower()}_opinion = {session.get('npc').lower()}_opinion + ? WHERE username=?", [results[0], session["username"]])
-    general_query(f"UPDATE players SET money = money + ? WHERE username=?", [results[1], session["username"]])
+    general_query("UPDATE players SET money = money + ? WHERE username=?", [results[1], session["username"]])
     print(select_query("SELECT * FROM players WHERE username=?", [session["username"]]))
     session.pop("drink")
     session.pop("npc")
+    general_query("UPDATE players SET order_counter = order_counter + 1 WHERE username=?", [session["username"]])
+    return redirect(url_for("game_scene_get"))
+
+@app.post("/restock")
+def restock():
+    total_price=0
+    bought_ingredients={}
+    alphabetical_ingredients=sorted(list(get_all_ingredients()))
+    for i in range(len(alphabetical_ingredients)):
+        total_price += get_price(session["date"], alphabetical_ingredients[i]) * int(request.form.get(str(i)))
+    if total_price > select_query("SELECT money FROM players WHERE username=?", [session["username"]])[0]["money"]:
+        flash("Not enough money", "error")
+        return redirect(url_for("game_scene_get"))
+    general_query("UPDATE players SET money = money - ? WHERE username=?", [total_price, session["username"]])
+    for i in range(len(get_all_ingredients())):
+        bought_ingredients[alphabetical_ingredients[i]] = request.form.get(str(i))
+    change_stock(session["username"], bought_ingredients, 1)
+    #time_travel()
     return redirect(url_for("game_scene_get"))
 
 if __name__ == "__main__":

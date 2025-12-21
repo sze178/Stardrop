@@ -20,6 +20,7 @@ CREATE TABLE players (
     cowboy_opinion INTEGER DEFAULT 0,
     pirate_opinion INTEGER DEFAULT 0,         
     supplies TEXT,
+    order_counter INTEGER DEFAULT 0,
     time_period DATETIME,
     alcohol_on BOOLEAN DEFAULT TRUE
 );

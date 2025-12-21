@@ -117,6 +117,14 @@ def calculate_results(npc, drink, contents):
     # return (like, price)
     return(5, 5)
     
+def get_price(date, item):
+    price=ingredient_data[item]["price"]
+    pass #multiply by gold conversion that day
+    return price
+
+def get_qty():
+    return random.randint(0,5)
+
 def request_coordinates(timestamp):
     url = f"https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={timestamp}"
     # timestamp is in unix/epoch time

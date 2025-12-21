@@ -34,6 +34,9 @@
       <div class="top-bar-title">
         <h1 class="topbar-responsive-logo megrim-regular" style ="font-size: 20px;">{{ date }}</strong></h1>
       </div>
+      <div class="top-bar-title">
+        <h1 class="topbar-responsive-logo megrim-regular" style ="font-size: 20px;">${{money}}</strong></h1>
+      </div>
       <div id="topbar-responsive" class="topbar-responsive-links">
         <div class="top-bar-right">
           <ul class="menu simple vertical medium-horizontal">
@@ -80,11 +83,11 @@
         <h3>Supplies</h3>
         <form action="/make_drink" method="POST" id="make_drink">
         <div style="display: grid; grid-template-columns: 3fr 1fr 1fr 1fr 1fr; width: 100%;">
-          <div>Ingredient</div>
-          <div>Qty</div>
-          <div>None</div>
-          <div>M</div>
-          <div>L</div>
+          <div class="col-label">Ingredient</div>
+          <div class="col-label">Qty</div>
+          <div class="col-label">None</div>
+          <div class="col-label">M</div>
+          <div class="col-label">L</div>
           {% for i in range(supplies | length) %}
               <div>{{ supplies[i] }}</div> 
               <div>{{ quantities[i] }}</div>
@@ -131,6 +134,24 @@
       <p>Price: {{ results[1] }}</p>
     </div>
     
+    <div class="reveal" id="restock" style="max-height: 50%" data-overlay="false" data-close-on-click="false" data-close-on-esc="false" data-reveal>
+      <form action="/restock" method="POST">
+        <h1>Restock Supplies</h1>
+        <div style="display: grid; overflow-y: auto; grid-template-columns: 2fr 1fr 1fr 1fr;">
+          <div class="col-label">Ingredient</div>
+          <div class="col-label">Available</div>
+          <div class="col-label">Price</div>
+          <div class="col-label">Quantity</div>
+          {% for i in range(supplies | length) %}
+            <div>{{ supplies[i] }}</div>
+            <div>{{ qty_available[i] }}</div>
+            <div>{{ price[i] }}</div>
+            <div><input type="text" name="{{ i }}" value="0"></input></div>
+          {% endfor %}
+        </div>
+        <button class="button" type="submit">Buy</button>
+      </form>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
     <script>
@@ -140,6 +161,9 @@
       {% endif %}
       {% if results %}
         $('#results').foundation('open');
+      {% endif %}
+      {% if restock %}
+        $('#restock').foundation('open');
       {% endif %}
     </script>
   </body>

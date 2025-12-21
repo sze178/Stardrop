@@ -191,3 +191,7 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
+.col-label {
+  font-weight:bold;
+  padding-bottom: 1em;
+}
