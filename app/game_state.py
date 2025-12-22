@@ -4,7 +4,7 @@
 
 from recipes import *
 from db import *
-import random, json
+import random, json, math
 
 alcoholOn = True
 npc_at_seat = ["Santa", "Pirate", "Cowboy"]
@@ -85,7 +85,7 @@ def npc_drink_order(name):
     else:
         return 0
 
-def calculate_results(npc, drink, contents, usd):
+def calculate_results(username, npc, drink, contents, usd):
     print(usd)
     print("\n\n")
     ingredients_used = contents.keys()
@@ -127,14 +127,18 @@ def calculate_results(npc, drink, contents, usd):
         result = "Terrible!"
     elif like < 0:
         result = "Could Be Better..."
-    elif like > 0:
-        "Wicked Drink!"
+    elif like > 0 and like < 5:
+        result = "Wicked Drink!"
     elif like >= 5:
         result = "Perfection!"
     # result += " " + str(like)
     # print(usd["price_gram_10k"])
-    money = round(price * float(usd)/10, 2)
-    return (result, money, price)
+    opinion = select_query(f"SELECT {npc.lower()}_opinion FROM players WHERE username=?", [username])[0][f"{npc.lower()}_opinion"]
+    tip = 0
+    if opinion > 0:
+        tip = math.ceil(2 * math.log(opinion))
+    money = round((price + tip) * float(usd)/10, 2)
+    return (result, money, price, tip)
     
 def get_price(conversion_rate, item):
     price=ingredient_data[item]["price"]

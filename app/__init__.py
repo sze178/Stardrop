@@ -207,9 +207,18 @@ def make_drink():
         flash("Not enough ingredients to make drink", "error")
         return redirect(url_for("game_scene_get"))
     change_stock(session["username"], added_ingredients, -1)
-    results = calculate_results(session.get("npc"), session.get("drink"), added_ingredients, select_query("SELECT conversion_rate FROM players WHERE username=?", [session["username"]])[0]["conversion_rate"])
+    results = calculate_results(session["username"], session.get("npc"), session.get("drink"), added_ingredients, select_query("SELECT conversion_rate FROM players WHERE username=?", [session["username"]])[0]["conversion_rate"])
     session["results"] = results
-    general_query(f"UPDATE players SET {session.get('npc').lower()}_opinion = {session.get('npc').lower()}_opinion + ? WHERE username=?", [results[0], session["username"]])
+    opinion_change = 0
+    if results[0] == "Terrible!":
+        opinion_change = -2
+    elif results[0] == "Could Be Better...":
+        opinion_change = -1
+    elif results[0] == "Wicked Drink!":
+        opinion_change = 1
+    elif results[0] == "Perfection!":
+        opinion_change = 2
+    general_query(f"UPDATE players SET {session.get('npc').lower()}_opinion = {session.get('npc').lower()}_opinion + ? WHERE username=?", [opinion_change, session["username"]])
     general_query("UPDATE players SET money = money + ? WHERE username=?", [round(results[1], 2), session["username"]])
     #print(select_query("SELECT * FROM players WHERE username=?", [session["username"]]))
     session[f"{session.get('npc').lower()}_order"] = True

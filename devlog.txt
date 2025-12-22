@@ -288,3 +288,7 @@ kiranS -- 2025-12-21 10:00
 - Moved restock trigger to button appearing after 3 orders taken
 - Made order buttons disappear after taking order
 - Converted restock prices to USD from gold and adding a bit of randomization to price
+
+kiranS -- 2025-12-21 22:50
+- Add tip mechanism based on opinion
+- Update results popup to show tip
