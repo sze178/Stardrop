@@ -129,7 +129,7 @@ def game_scene_get():
     quantities=[]
     npc = ""
     npc_data = {}
-    money=select_query("SELECT money FROM players WHERE username=?", [session["username"]])[0]["money"]
+    money=round(select_query("SELECT money FROM players WHERE username=?", [session["username"]])[0]["money"], 2)
     order=False
     session["santa_order"] = session.get("santa_order", False)
     session["cowboy_order"] = session.get("cowboy_order", False)

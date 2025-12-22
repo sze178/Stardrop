@@ -85,7 +85,7 @@ def npc_drink_order(name):
     else:
         return 0
 
-def calculate_results(npc, drink, contents, usd):
+def calculate_results(username, npc, drink, contents, usd):
     # print(usd)
     # print("\n\n")
 
@@ -119,7 +119,7 @@ def calculate_results(npc, drink, contents, usd):
                 like += amount
             if npc_data["Favorite"].lower() == ingredient:
                 like += 2 * amount
-            elif npc_data["Dislikes"].lower() == ingredient_info["flavor"]:
+            elif not ingredient in ingredients_needed and npc_data["Dislikes"].lower() == ingredient_info["flavor"]:
                 like = min(0, like - 1)
         price += ingredient_info["price"] * amount
     like -= 5
