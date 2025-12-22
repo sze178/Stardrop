@@ -282,3 +282,9 @@ kiranS -- 2025-12-21 19:30
 - Added random time travel ability after restocking
 - Limited restock qty select to int between 0 and total available
 - Made restock trigger only after closing results screen
+
+kiranS -- 2025-12-21 10:00
+- Made restock data save to allow rollback on insufficient money error
+- Moved restock trigger to button appearing after 3 orders taken
+- Made order buttons disappear after taking order
+- Converted restock prices to USD from gold and adding a bit of randomization to price

@@ -133,13 +133,13 @@ def calculate_results(npc, drink, contents, usd):
         result = "Perfection!"
     # result += " " + str(like)
     # print(usd["price_gram_10k"])
-    money = round(price * float(usd["price_gram_10k"])/10, 2)
+    money = round(price * float(usd)/10, 2)
     return (result, money, price)
     
-def get_price(date, item):
+def get_price(conversion_rate, item):
     price=ingredient_data[item]["price"]
-    pass #multiply by gold conversion that day
-    return price
+    price *= conversion_rate / 10 * random.randint(90, 110) / 100
+    return round(price, 2)
 
 def get_qty():
     return random.randint(0,5)
@@ -149,7 +149,9 @@ def time_travel():
     month = random.randint(1,12)
     year = random.randint(0, 25)
     new_date = str(month) + "/" + str(day) + "/" + str(1999 + year)
+    print(date_to_timestamp(new_date))
     conversion_rate = request_value(date_to_timestamp(new_date))
+    print(conversion_rate)
     return (new_date, conversion_rate)
 
 def timestamp_to_unix(date):
@@ -233,6 +235,10 @@ def request_value(timestamp):
         print(e)
 
 def date_to_timestamp(date):
-    temp = date.replace("/", "")
-    temp = temp[-4:] + temp[:2] + temp[2:4]
-    return int(temp)
+    temp = date.split("/")
+    if int(temp[0]) < 10:
+        temp[0] = "0" + temp[0]
+    if int(temp[1]) < 10:
+        temp[1] = "0" + temp[1] 
+    out = temp[2] + temp[0] + temp[1]
+    return int(out)

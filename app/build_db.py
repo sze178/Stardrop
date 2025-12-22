@@ -22,6 +22,7 @@ CREATE TABLE players (
     supplies TEXT,
     order_counter INTEGER DEFAULT 0,
     date TEXT,
+    conversion_rate REAL,
     alcohol_on BOOLEAN DEFAULT TRUE
 );
 """)
