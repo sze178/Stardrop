@@ -86,8 +86,8 @@ def npc_drink_order(name):
         return 0
 
 def calculate_results(npc, drink, contents, usd):
-    print(usd)
-    print("\n\n")
+    # print(usd)
+    # print("\n\n")
     ingredients_used = contents.keys()
     ingredients_needed = drink["ingredients"]
     accuracy = len(ingredients_needed)
@@ -149,9 +149,9 @@ def time_travel():
     month = random.randint(1,12)
     year = random.randint(0, 25)
     new_date = str(month) + "/" + str(day) + "/" + str(1999 + year)
-    print(date_to_timestamp(new_date))
+    # print(date_to_timestamp(new_date))
     conversion_rate = request_value(date_to_timestamp(new_date))
-    print(conversion_rate)
+    # print(conversion_rate)
     return (new_date, conversion_rate)
 
 def timestamp_to_unix(date):
@@ -203,7 +203,7 @@ def request_coordinates(timestamp):
 
 
 def request_value(timestamp):
-    print(timestamp)
+    # print(timestamp)
     url = f"https://www.goldapi.io/api/XAU/USD/{timestamp}"
     # timestamp is in YYYYMMDD
 
@@ -213,13 +213,10 @@ def request_value(timestamp):
     try:
         with open("keys/key_GoldAPI.txt", "r") as f:
             api_key = f.read().strip()
-            print(f.read().strip())
+            # print(f.read().strip())
     except FileNotFoundError as e:
         print(e)
     
-
-    # api_key = "goldapi-citmsmixc4q0y-io" #read key_GoldAPI.txt later
-    print(api_key)
     headers = {
         "x-access-token": api_key,
         "Content-Type": "application/json"

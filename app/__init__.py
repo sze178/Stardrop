@@ -5,19 +5,19 @@
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 import sqlite3, json
 from db import *
-
+import os
 from game_state import *
 from recipes import *
 
 app = Flask(__name__)
-app.secret_key = "zxlkcvjlxzkjvlxcjlk"
+app.secret_key = os.urandom(13)
 
 @app.get("/")
 def index_get():
     try:
         keyfile = open("keys/key_GoldAPI.txt")
         GoldAPIKey = next(keyfile)
-        print(GoldAPIKey)
+        # print(GoldAPIKey)
     except FileNotFoundError:
         print("NO GOLD API KEY FILE AVAILABLE")
         flash("No GOLD API key file available", "error")
@@ -60,7 +60,7 @@ def register_post():
     flash("Account successfully registered. Please log in.", "success")
     initialize_supplies(username) 
     time_data = time_travel()
-    print(time_data)
+    # print(time_data)
     session["date"] = time_data[0]
     general_query("UPDATE players SET date=? WHERE username=?", [time_data[0], username])
     general_query("UPDATE players SET conversion_rate=? WHERE username=?", [time_data[1]["price_gram_10k"], username])

@@ -13,13 +13,13 @@
     .image-hover {
       width: 300px;
       height: 300px;
-      background-image: url(../static/art/placeholder.gif);
+      background-image: url(../static/art/closed.png);
       background-size: cover;
       transition: background-image 0.1s ease-in-out;
     }
 
     .image-hover:hover {
-        background-image: url(../static/art/santa.png);
+        background-image: url(../static/art/open.png);
         width:400px;
         height:300px;
     }
@@ -27,7 +27,7 @@
     .reg_img {
       width: 300px;
       height: 300px;
-      background-image: url(../static/art/placeholder.gif);
+      background-image: url(../static/art/closed.png);
       background-size: cover;
     }
 </style>
@@ -35,12 +35,12 @@
 {% if "username" not in session.keys() %}
 
 <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
-<div href="{{url_for('game_scene_get')}}" class = "reg_img" style="display: block; margin-left: auto; margin-right: auto; margin-top:200px; margin-bottom: auto;"></div>
+<div href="{{url_for('game_scene_get')}}" class = "reg_img" style="display: block; margin-left: auto; margin-right: auto; margin-top:10%; margin-bottom: auto;"></div>
 
 {% else %}
 
 <a href="{{url_for('game_scene_get')}}">
-  <div href="{{url_for('game_scene_get')}}" class = "image-hover" style="display: block; margin-left: auto; margin-right: auto; margin-top:200px; margin-bottom: auto;"></div>
+  <div href="{{url_for('game_scene_get')}}" class = "image-hover" style="display: block; margin-left: auto; margin-right: auto; margin-top:10%; margin-bottom: auto;"></div>
 </a>
 
 <html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
