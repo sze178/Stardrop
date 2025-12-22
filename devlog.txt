@@ -276,3 +276,9 @@ alvinS -- 2025-12-21 17:26
 alvinS -- 2025-12-21 17:55
 - Converts to USD successfully and displays money earned
 - API query result changes to dict not text
+
+kiranS -- 2025-12-21 19:30
+- Optimized gold API call frequency w/ session and database
+- Added random time travel ability after restocking
+- Limited restock qty select to int between 0 and total available
+- Made restock trigger only after closing results screen

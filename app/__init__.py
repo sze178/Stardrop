@@ -9,15 +9,13 @@ from db import *
 from game_state import *
 from recipes import *
 
-GoldAPIKey = "" #KEY HERE
-
 app = Flask(__name__)
 app.secret_key = "zxlkcvjlxzkjvlxcjlk"
 
 @app.get("/")
 def index_get():
     try:
-        keyfile = open("keys/xkey_GoldAPI.txt")
+        keyfile = open("keys/key_GoldAPI.txt")
         GoldAPIKey = next(keyfile)
         print(GoldAPIKey)
     except FileNotFoundError:
@@ -42,6 +40,8 @@ def login_post():
         ## print("XXXXXXX")
         return redirect(url_for("login_get"))
     session["username"] = username
+    if session.get("conversion_rate") is None:
+        session["conversion_rate"] = request_value(date_to_timestamp(select_query("SELECT date FROM players WHERE username=?", [username])[0]["date"]))
     return redirect(url_for("index_get"))
 
 
@@ -54,13 +54,18 @@ def register_get():
 def register_post():
     username = request.form.get("username")
     password = request.form.get("password")
-    registered = select_query("SELECT * FROM PLAYERS WHERE username=?", [username])
+    registered = select_query("SELECT * FROM players WHERE username=?", [username])
     if len(registered) != 0:
         flash("Username already exists", "error")
         return redirect(url_for("register_get"))
     insert_query("players", {"username": username, "password": password})
     flash("Account successfully registered. Please log in.", "success")
-    initialize_supplies(username) # not entirely sure if this should go here
+    initialize_supplies(username) 
+    time_data = time_travel()
+    print(time_data)
+    session["date"] = time_data[0]
+    insert_query("players", {"username": username, "date": time_data[0]})
+    session["conversion_rate"] = time_data[1]
     return redirect(url_for("login_get"))
 
 @app.get('/logout')
@@ -111,10 +116,8 @@ def change_password():
 
 @app.get('/game_scene')
 def game_scene_get():
-    date = "11/23/2023" 
-    session["date"] = date
-    session["conversion_rate"] = request_value(date_to_timestamp(date))
-    coords = request_coordinates(date_to_timestamp(date))
+    date = session.get("date", "11/21/2023")
+    coords = request_coordinates(date)
     coords[0] = round(coords[0], 4)
     coords[1] = round(coords[1], 4)
     if "username" not in session.keys():
@@ -224,7 +227,11 @@ def restock():
     for i in range(len(get_all_ingredients())):
         bought_ingredients[alphabetical_ingredients[i]] = request.form.get(str(i))
     change_stock(session["username"], bought_ingredients, 1)
-    #time_travel()
+    new_data = time_travel()
+    session["date"] = new_data[0]
+    insert_query("players", {"username": session["username"], "date": new_data[0]})
+    session["conversion_rate"] = new_data[1]
+    general_query("UPDATE players SET order_counter = 0 WHERE username=?", [session["username"]])
     return redirect(url_for("game_scene_get"))
 
 if __name__ == "__main__":

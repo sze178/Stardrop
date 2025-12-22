@@ -131,8 +131,8 @@ def calculate_results(npc, drink, contents, usd):
         "Wicked Drink!"
     elif like >= 5:
         result = "Perfection!"
-    result += " " + str(like)
-    print(usd["price_gram_10k"])
+    # result += " " + str(like)
+    # print(usd["price_gram_10k"])
     money = round(price * float(usd["price_gram_10k"])/10, 2)
     return (result, money, price)
     
@@ -144,8 +144,28 @@ def get_price(date, item):
 def get_qty():
     return random.randint(0,5)
 
+def time_travel():
+    day = random.randint(1, 28)
+    month = random.randint(1,12)
+    year = random.randint(0, 25)
+    new_date = str(month) + "/" + str(day) + "/" + str(1999 + year)
+    conversion_rate = request_value(date_to_timestamp(new_date))
+    return (new_date, conversion_rate)
+
+def timestamp_to_unix(date):
+    temp = date.replace("/", "")
+    year = int(temp[-4:])
+    month = int(temp[:2])
+    day = int(temp[2:4])
+    time = 0
+    time += (year - 1970) * 31556926
+    time += (month) * 2629743
+    time += day * 86400 
+    return time
+
 def request_coordinates(timestamp):
-    url = f"https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={timestamp}"
+    unix_timestamp = timestamp_to_unix(timestamp)
+    url = f"https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps={unix_timestamp}"
     # timestamp is in unix/epoch time
 
     try:
@@ -181,21 +201,22 @@ def request_coordinates(timestamp):
 
 
 def request_value(timestamp):
+    print(timestamp)
     url = f"https://www.goldapi.io/api/XAU/USD/{timestamp}"
     # timestamp is in YYYYMMDD
 
     api_key = ""
 
-    '''
+    
     try:
         with open("keys/key_GoldAPI.txt", "r") as f:
             api_key = f.read().strip()
             print(f.read().strip())
     except FileNotFoundError as e:
         print(e)
-    '''
+    
 
-    api_key = "goldapi-citmsmixc4q0y-io" #read key_GoldAPI.txt later
+    # api_key = "goldapi-citmsmixc4q0y-io" #read key_GoldAPI.txt later
     print(api_key)
     headers = {
         "x-access-token": api_key,

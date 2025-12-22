@@ -141,10 +141,15 @@
       </div>
     </div>
 
-    <div class="reveal" id="results" data-reveal>
+    <div class="reveal" id="results" data-close-on-click="false" data-close-on-esc="false" data-reveal>
       <p>Result: {{ results[0] }}</p>
       <p>Money Earned (Gold Coins): {{ results[2] }}</p>
       <p>Money Earned (USD): ${{ results[1] }}</p>
+      {% if restock %}
+        <button class="button" data-open="restock">Okay</button>
+      {% else %}
+        <a href="/game_scene"><button class="button">Okay</button></a>
+      {% endif %}
     </div>
     
     <div class="reveal" id="restock" style="max-height: 50%" data-overlay="false" data-close-on-click="false" data-close-on-esc="false" data-reveal>
@@ -159,7 +164,7 @@
             <div>{{ supplies[i] }}</div>
             <div>{{ qty_available[i] }}</div>
             <div>{{ price[i] }}</div>
-            <div><input type="text" name="{{ i }}" value="0"></input></div>
+            <div><input type="number" name="{{ i }}" value="0" step="1" min="0" max="{{ qty_available[i] }}"></input></div>
           {% endfor %}
         </div>
         <button class="button" type="submit">Buy</button>
@@ -174,9 +179,6 @@
       {% endif %}
       {% if results %}
         $('#results').foundation('open');
-      {% endif %}
-      {% if restock %}
-        $('#restock').foundation('open');
       {% endif %}
     </script>
   </body>
