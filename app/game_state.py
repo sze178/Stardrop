@@ -6,7 +6,6 @@ from recipes import *
 from db import *
 import random, json, math
 
-alcoholOn = True
 npc_at_seat = ["Santa", "Pirate", "Cowboy"]
 
 #drink selections / list of ids from api to randomly choose from
@@ -72,7 +71,7 @@ def change_stock(username, changes, mode):
 def get_npc_drink_preferences(name):
     return npcDrinkPreferences[name]
 
-def npc_drink_order(name):
+def npc_drink_order(name, alcoholOn):
     drinkSet = []
     if alcoholOn:
         drinkSet = npcDrinkPreferences[name]["alcohol"] + npcDrinkPreferences[name]["no_alcohol"]

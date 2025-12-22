@@ -142,7 +142,7 @@ def game_scene_get():
         npc_data = get_npc_drink_preferences(npc)
         for i in range(3):
             npc_data[list(npc_data)[i]] = list(npc_data.values())[i].capitalize()
-        drink_id = npc_drink_order(npc)
+        drink_id = npc_drink_order(npc, select_query("SELECT alcohol_on FROM players WHERE username=?", [session["username"]])[0]["alcohol_on"])
         drink = request_drink(drink_id)
         session["drink"] = drink
         ingredients = drink["ingredients"] 
